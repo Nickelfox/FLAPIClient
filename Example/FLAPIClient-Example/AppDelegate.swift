@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
-		DataModel.demo { (response, error) in
-			if let _ = response {
-				print("call success")
+		DataModel.demo { (object, error) in
+			if let object = object {
+				print("success: \(object.message)")
 			} else {
 				print("error: \(error?.message)")
 			}

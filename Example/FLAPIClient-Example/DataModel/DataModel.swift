@@ -13,7 +13,7 @@ typealias APICompletion<T> = (T?, APIError?) -> Void
 
 class DataModel {
 
-	static func demo(completion: @escaping APICompletion<NoResponse>) {
+	static func demo(completion: @escaping APICompletion<DemoObject>) {
 		FoxAPIClient.shared.request(
 			route: Router.demo,
 			completion: completion
