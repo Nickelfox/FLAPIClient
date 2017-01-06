@@ -9,8 +9,12 @@
 import Foundation
 import FLAPIClient
 
-/*class FoxAPIClient: APIClient<AuthHeaders, ErrorResponse> {
+class FoxAPIClient: APIClient<AuthHeaders, ErrorResponse> {
 	
 	static let shared = FoxAPIClient()
 	
-}*/
+	override func parseAuthenticationHeaders(_ response: HTTPURLResponse) {
+		self.authHeaders = try? AuthHeaders.parse(JSON(response.allHeaderFields as AnyObject?))
+	}
+	
+}

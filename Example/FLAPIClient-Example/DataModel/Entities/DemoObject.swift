@@ -10,7 +10,7 @@ import Foundation
 import FLAPIClient
 
 final public class DemoObject {
-	
+	let message = "Success!"
 }
 
 extension DemoObject: JSONParsing {
