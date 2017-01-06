@@ -1,15 +1,15 @@
 //
-//  DemoRouter.swift
-//  FLAPIClient-Example
+//  Router.swift
+//  Inito
 //
-//  Created by Ravindra Soni on 06/01/17.
-//  Copyright © 2017 Nickelfox. All rights reserved.
+//  Created by Ravindra Soni on 24/10/16.
+//  Copyright © 2016 Nickelfox. All rights reserved.
 //
 
 import Foundation
 import FLAPIClient
 
-public enum DemoRouter: APIRouter {
+enum Router: APIRouter {
 	case demo
 	
 	public var method: HTTPMethod {
@@ -40,6 +40,5 @@ public enum DemoRouter: APIRouter {
 	
 	public var headers: [String: String] {
 		return ["Content-Type": "application/json"]
-	}
-	
+	}	
 }

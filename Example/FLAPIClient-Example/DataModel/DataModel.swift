@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import FLAPIClient
+
+typealias APICompletion<T> = (T?, APIError?) -> Void
+
+class DataModel {
+
+	static func demo(completion: @escaping APICompletion<NoResponse>) {
+		FoxAPIClient.shared.request(
+			route: Router.demo,
+			completion: completion
+		)
+	}
+
+}

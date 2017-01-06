@@ -17,14 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		FoxAPIClient.shared.request(
-		route: DemoRouter.demo) { (object: DemoObject?, error) in
-			if let error = error {
-				print("error: \(error.message)")
+		
+		DataModel.demo { (response, error) in
+			if let _ = response {
+				print("call success")
 			} else {
-				print("response: \(object?.message)")
+				print("error: \(error?.message)")
 			}
 		}
+		
 		return true
 	}
 
