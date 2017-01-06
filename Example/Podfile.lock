@@ -1,0 +1,19 @@
+PODS:
+  - Alamofire (4.2.0)
+  - FLAPIClient (0.1.0):
+    - Alamofire (~> 4.0)
+
+DEPENDENCIES:
+  - FLAPIClient (from `../`)
+
+EXTERNAL SOURCES:
+  FLAPIClient:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  FLAPIClient: 050c44fa35dfb82562dec25d549212c87cb5f7cd
+
+PODFILE CHECKSUM: 320538ffd830af66a3d5420799b91f092333648e
+
+COCOAPODS: 1.1.0.rc.2
