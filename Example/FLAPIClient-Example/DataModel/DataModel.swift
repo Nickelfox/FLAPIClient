@@ -8,6 +8,7 @@
 
 import Foundation
 import FLAPIClient
+import ReactiveSwift
 
 typealias APICompletion<T> = (T?, APIError?) -> Void
 
@@ -18,6 +19,10 @@ class DataModel {
 			route: Router.demo,
 			completion: completion
 		)
+	}
+
+	static func demo() -> SignalProducer<DemoObject, APIError> {
+		return FoxAPIClient.shared.request(route: Router.demo)
 	}
 
 }

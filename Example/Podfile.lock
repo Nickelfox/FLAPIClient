@@ -2,6 +2,12 @@ PODS:
   - Alamofire (4.2.0)
   - FLAPIClient (0.1.0):
     - Alamofire (~> 4.0)
+    - ReactiveCocoa (~> 5.0)
+  - ReactiveCocoa (5.0.0):
+    - ReactiveSwift (~> 1.0.0)
+  - ReactiveSwift (1.0.0):
+    - Result (~> 3.1)
+  - Result (3.1.0)
 
 DEPENDENCIES:
   - FLAPIClient (from `../`)
@@ -12,8 +18,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  FLAPIClient: 050c44fa35dfb82562dec25d549212c87cb5f7cd
+  FLAPIClient: a0e6f0a14ca2459fe6194029db0a0d7ea15d1ae7
+  ReactiveCocoa: 60ef0da915b4f70c34ebecc3f4fb8f96af0e53d6
+  ReactiveSwift: f391724ee318a2cfd3e37dfb041cd49ecf4e7869
+  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
 
 PODFILE CHECKSUM: 320538ffd830af66a3d5420799b91f092333648e
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.2.0.rc.1

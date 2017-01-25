@@ -35,4 +35,5 @@ A wrapper over Alamofire for handling APIs for iOS by Fox Labs. It contains util
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 4.0'
+  s.dependency 'ReactiveCocoa', '~> 5.0'
 end

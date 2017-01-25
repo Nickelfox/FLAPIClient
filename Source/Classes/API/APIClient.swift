@@ -7,8 +7,8 @@
 //
 
 import Foundation
-//import ReactiveSwift
-//import Result
+import ReactiveSwift
+import Result
 import Alamofire
 
 private let AuthHeadersKey = "AuthHeadersKey"
@@ -70,31 +70,31 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 	
 }
 
-////MARK: Reactive
-//extension APIClient {
-//
-//	public func request<T: JSONParsing> (route: APIRouter) -> SignalProducer<T, APIError> {
-//		
-//		return SignalProducer { sink, disposable in
-//			
-//			let request =
-//			APIClient.sharedInstance.requestInternal(route: route, completion: {
-//				(result: T?, error) -> Void in
-//				guard let result = result else {
-//					sink.send(error: error!)
-//					return
-//				}
-//				sink.send(value: result)
-//				sink.sendCompleted()
-//			})
-//
-//			disposable.add {
-//				request.cancel()
-//			}
-//			}.observe(on: UIScheduler())
-//	}
-//
-//}
+//MARK: Reactive
+extension APIClient {
+
+	public func request<T: JSONParsing> (route: APIRouter) -> SignalProducer<T, APIError> {
+		
+		return SignalProducer { sink, disposable in
+			
+			let request =
+			self.requestInternal(route: route, completion: {
+				(result: T?, error) -> Void in
+				guard let result = result else {
+					sink.send(error: error!)
+					return
+				}
+				sink.send(value: result)
+				sink.sendCompleted()
+			})
+
+			disposable.add {
+				request.cancel()
+			}
+			}.observe(on: UIScheduler())
+	}
+
+}
 
 //MARK: Non-Reactive
 extension APIClient {

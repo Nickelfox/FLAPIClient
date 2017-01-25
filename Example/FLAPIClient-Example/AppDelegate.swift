@@ -26,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		}
 		
+		DataModel.demo().on(failed: { error in
+			print("error: \(error.message)")
+		}) { demoObject in
+			print("success: \(demoObject.message)")
+		}.start()
+		
 		return true
 	}
 
