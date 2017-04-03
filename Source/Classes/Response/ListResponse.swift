@@ -15,7 +15,7 @@ public protocol ListResponseProtocol {
 }
 
 public final class ListResponse<T: JSONParsing> where T: ListResponseProtocol {
-	var list: [T] = []
+	public var list: [T] = []
 }
 
 extension ListResponse: JSONParsing {
