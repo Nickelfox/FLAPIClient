@@ -30,5 +30,9 @@ extension ListResponse: JSONParsing {
 			throw error
 		}
 	}
-	
+
+	public static func listJSON(_ json: JSON) -> JSON {
+		return json
+	}
+
 }
