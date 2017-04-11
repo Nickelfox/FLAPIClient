@@ -14,6 +14,16 @@ public protocol ListResponseProtocol {
 	
 }
 
+extension ListResponseProtocol {
+	
+	public static func listJSON(_ json: JSON) -> JSON {
+		return json
+	}
+	
+}
+
+
+
 public final class ListResponse<T: JSONParsing> where T: ListResponseProtocol {
 	public var list: [T] = []
 }
@@ -30,9 +40,4 @@ extension ListResponse: JSONParsing {
 			throw error
 		}
 	}
-
-	public static func listJSON(_ json: JSON) -> JSON {
-		return json
-	}
-
 }
