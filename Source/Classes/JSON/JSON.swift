@@ -47,6 +47,8 @@ public final class JSON {
 				idx, item in
 				JSON(item, parent: self, key: "\(idx)")
 			}
+		} else if object is NSNull {
+			return []
 		} else {
 			return [self]
 		}
