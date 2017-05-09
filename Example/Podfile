@@ -7,4 +7,5 @@ use_frameworks!
 
 target 'FLAPIClient-Example' do
 	pod 'FLAPIClient', :path => '../'
+    pod 'SwiftyJSON'
 end

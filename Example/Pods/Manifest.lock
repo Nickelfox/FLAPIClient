@@ -1,19 +1,22 @@
 PODS:
-  - Alamofire (4.2.0)
+  - Alamofire (4.4.0)
   - FLAPIClient (0.1.0):
-    - Alamofire (~> 4.0)
+    - Alamofire (~> 4.4)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - FLAPIClient (from `../`)
+  - SwiftyJSON
 
 EXTERNAL SOURCES:
   FLAPIClient:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  FLAPIClient: 050c44fa35dfb82562dec25d549212c87cb5f7cd
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  FLAPIClient: c1a17c229aacd121c86b1211f026b1c9d39af203
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 320538ffd830af66a3d5420799b91f092333648e
+PODFILE CHECKSUM: 253ece769052a36b0e109162d9d6f4d7fb5e5c4f
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.1.0
