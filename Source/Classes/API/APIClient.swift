@@ -123,39 +123,79 @@ extension APIClient {
 		if self.enableLogs {
 			request.log()
 		}
-		request.responseJSON { [unowned self] response in
+		
+		request.response { [unowned self] response in
 			if self.enableLogs {
-				print("response is \(response)")
+				response.log()
 			}
-			switch response.result {
-			case .success(let resultValue):
-				//Parse Auth Headers
-				func handleResult(resultValue: Any, code: Int) {
-					if let httpResponse = response.response {
-						self.parseAuthenticationHeaders(httpResponse)
-					}
-					do {
-						let result: T = try self.parse(resultValue, code)
-						completionHandler(result, nil)
-					} catch let apiError as APIError {
-						completionHandler(nil, apiError)
-					} catch {
-						completionHandler(nil, (error as NSError).apiError)
-					}
+			//Parse Auth Headers
+			func handleResult(resultValue: Any?, code: Int) {
+				if let httpResponse = response.response {
+					self.parseAuthenticationHeaders(httpResponse)
 				}
-				if let code = response.response?.statusCode {
-					if code >= 200 && code <= 299 {
-						handleResult(resultValue: resultValue, code: code)
+				do {
+					let result: T = try self.parse(resultValue, code)
+					completionHandler(result, nil)
+				} catch let apiError as APIError {
+					completionHandler(nil, apiError)
+				} catch {
+					completionHandler(nil, (error as NSError).apiError)
+				}
+			}
+
+			if let data = response.data {
+				do {
+					let jsonObject = try JSONSerialization.jsonObject(with: data, options: [.allowFragments])
+					if let code = response.response?.statusCode {
+						if code >= 200 && code <= 299 {
+							handleResult(resultValue: jsonObject, code: code)
+						} else {
+							completionHandler(nil, self.parseError(jsonObject, code))
+						}
 					} else {
-						completionHandler(nil, self.parseError(resultValue, code))
+						handleResult(resultValue: jsonObject, code: 0)
 					}
-				} else {
-					handleResult(resultValue: resultValue, code: 0)
+				} catch {
+					handleResult(resultValue: nil, code: 0)
 				}
-			case .failure(let error):
-				completionHandler(nil, self.parseError(error as NSError?))
+			} else {
+				handleResult(resultValue: nil, code: 0)
 			}
 		}
+		
+//		request.responseJSON { [unowned self] response in
+//			if self.enableLogs {
+//				print("response is \(response)")
+//			}
+//			switch response.result {
+//			case .success(let resultValue):
+//				//Parse Auth Headers
+//				func handleResult(resultValue: Any, code: Int) {
+//					if let httpResponse = response.response {
+//						self.parseAuthenticationHeaders(httpResponse)
+//					}
+//					do {
+//						let result: T = try self.parse(resultValue, code)
+//						completionHandler(result, nil)
+//					} catch let apiError as APIError {
+//						completionHandler(nil, apiError)
+//					} catch {
+//						completionHandler(nil, (error as NSError).apiError)
+//					}
+//				}
+//				if let code = response.response?.statusCode {
+//					if code >= 200 && code <= 299 {
+//						handleResult(resultValue: resultValue, code: code)
+//					} else {
+//						completionHandler(nil, self.parseError(resultValue, code))
+//					}
+//				} else {
+//					handleResult(resultValue: resultValue, code: 0)
+//				}
+//			case .failure(let error):
+//				completionHandler(nil, self.parseError(error as NSError?))
+//			}
+//		}
 		return request
 	}
 
@@ -220,5 +260,22 @@ extension Request {
 			}
 		}
 	}
+	
+}
+
+extension DefaultDataResponse {
+
+	func log() {
+		if let response = self.response,
+			let data = self.data,
+			let utf8 = String.init(data: data, encoding: .utf8),
+			let url = self.request?.url {
+			let statusCode = response.statusCode
+			print("Response for \(url):")
+			print("Status Code: \(statusCode)")
+			print("Data: \(utf8)")
+		}
+	}
+
 	
 }

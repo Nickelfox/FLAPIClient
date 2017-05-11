@@ -13,6 +13,11 @@ class FoxAPIClient: APIClient<AuthHeaders, ErrorResponse> {
 	
 	static let shared = FoxAPIClient()
 	
+	override init() {
+		super.init()
+		self.enableLogs = true
+	}
+	
 	override func parseAuthenticationHeaders(_ response: HTTPURLResponse) {
 		self.authHeaders = try? AuthHeaders.parse(JSON(response.allHeaderFields as AnyObject?))
 	}
