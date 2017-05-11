@@ -15,6 +15,8 @@ private let AuthHeadersKey = "AuthHeadersKey"
 
 open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 
+	public var enableLogs = false
+	
 	public init() {
 		self.networkManager = NetworkReachabilityManager()
 		self.sessionManager = SessionManager(configuration: URLSessionConfiguration.default)
@@ -118,8 +120,13 @@ extension APIClient {
 		
 		//Make request
 		let request = self.sessionManager.request(route)
+		if self.enableLogs {
+			request.log()
+		}
 		request.responseJSON { [unowned self] response in
-			print("response is \(response)")
+			if self.enableLogs {
+				print("response is \(response)")
+			}
 			switch response.result {
 			case .success(let resultValue):
 				//Parse Auth Headers
@@ -197,4 +204,21 @@ extension APIClient {
 		}
 	}
 
+}
+
+extension Request {
+
+	func log() {
+		if let request = self.request,
+			let url = request.url,
+			let headers = request.allHTTPHeaderFields,
+			let method = request.httpMethod {
+			print("Request: \(method) \(url)")
+			print("Headers: \(headers)")
+			if let data = request.httpBody, let params = String.init(data: data, encoding: .utf8) {
+				print("Params: \(params)")
+			}
+		}
+	}
+	
 }
