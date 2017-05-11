@@ -8,6 +8,7 @@
 
 import Foundation
 import FLAPIClient
+import SwiftyJSON
 
 class FoxAPIClient: APIClient<AuthHeaders, ErrorResponse> {
 	
@@ -19,7 +20,7 @@ class FoxAPIClient: APIClient<AuthHeaders, ErrorResponse> {
 	}
 	
 	override func parseAuthenticationHeaders(_ response: HTTPURLResponse) {
-		self.authHeaders = try? AuthHeaders.parse(JSON(response.allHeaderFields as AnyObject?))
+		self.authHeaders = try? AuthHeaders.parse(JSON(response.allHeaderFields))
 	}
 	
 }

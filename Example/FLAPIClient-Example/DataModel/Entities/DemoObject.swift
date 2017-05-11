@@ -8,6 +8,7 @@
 
 import Foundation
 import FLAPIClient
+import SwiftyJSON
 
 final public class DemoObject {
 	let message = "Success!"

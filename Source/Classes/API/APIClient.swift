@@ -10,6 +10,7 @@ import Foundation
 //import ReactiveSwift
 //import Result
 import Alamofire
+import SwiftyJSON
 
 private let AuthHeadersKey = "AuthHeadersKey"
 
@@ -21,7 +22,7 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 		self.networkManager = NetworkReachabilityManager()
 		self.sessionManager = SessionManager(configuration: URLSessionConfiguration.default)
 		let profileJSON = self.currentProfile
-		self.authHeaders = try? JSON(profileJSON as AnyObject?)^
+		self.authHeaders = try? SwiftyJSON.JSON(profileJSON as Any)^
 	}
 	
 	private var currentProfile: Any? {
@@ -207,11 +208,11 @@ extension APIClient {
 				throw errorResponse.error
 			}
 			return try T.parse(json)
-		} catch JSON.ParseError.noValue(let json) {
-			let desc = "JSON value not found at key path \(json.pathFromRoot)"
+		} catch ParseError.noValue(let json) {
+			let desc = "JSON value not found at key path \(json)"
 			throw APIErrorType.mapping(message: desc).error
-		} catch JSON.ParseError.typeMismatch(let json) {
-			let desc = "JSON value type mismatch at key path \(json.pathFromRoot)"
+		} catch ParseError.typeMismatch(let json) {
+			let desc = "JSON value type mismatch at key path \(json)"
 			throw APIErrorType.mapping(message: desc).error
 		} catch let apiError as APIError {
 			throw apiError

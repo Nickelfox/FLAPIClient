@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public struct NoResponse: JSONParsing {
 	public static func parse(_ json: JSON) throws -> NoResponse {

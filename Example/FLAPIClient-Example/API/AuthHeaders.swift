@@ -8,6 +8,7 @@
 
 import Foundation
 import FLAPIClient
+import SwiftyJSON
 
 public struct AuthHeaders: AuthHeadersProtocol {
 	let accessToken: String

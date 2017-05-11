@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public protocol ErrorResponseProtocol: APIErrorProtocol {
 	static func parse(_ json: JSON, code: Int) throws -> Self

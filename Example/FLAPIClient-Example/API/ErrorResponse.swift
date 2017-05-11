@@ -8,16 +8,17 @@
 
 import Foundation
 import FLAPIClient
+import SwiftyJSON
 
 private let errorKey = "error"
 
 public struct ErrorResponse: ErrorResponseProtocol {
 	public static func parse(_ json: JSON, code: Int) throws -> ErrorResponse {
 		let unknownError = APIErrorType.mapping(message: "Error Response can't be mapped.").error
-		if let _ = json[errorKey].object {
+		if json[errorKey] != JSON.null {
 			return try ErrorResponse(
 				code: .other(code: code),
-				messages: json[errorKey].array.map(^)
+				messages: json[errorKey].arrayValue.map(^)
 			)
 		} else {
 			throw unknownError
