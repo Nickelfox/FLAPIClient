@@ -14,6 +14,8 @@ import SwiftyJSON
 
 private let AuthHeadersKey = "AuthHeadersKey"
 
+public let DefaultStatusCode = 0
+
 open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 
 	public var enableLogs = false
@@ -55,9 +57,14 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 	fileprivate let sessionManager: SessionManager
 	fileprivate let networkManager: NetworkReachabilityManager?
 	
-	//Override this method in the subclass to st auth headers from the responses.
+	//Override this method in the subclass to set auth headers from the responses.
 	open func parseAuthenticationHeaders (_ response: HTTPURLResponse) {
 
+	}
+
+	//Override this method in the subclass to mutate response.
+	open func mutateResponse (_ response: HTTPURLResponse) -> HTTPURLResponse {
+		return response
 	}
 
 	fileprivate var isNetworkReachable: Bool {
@@ -129,13 +136,14 @@ extension APIClient {
 			if self.enableLogs {
 				response.log()
 			}
-			//Parse Auth Headers
-			func handleResult(resultValue: Any?, code: Int) {
+			
+			func handleJson(_ json: JSON, code: Int) {
 				if let httpResponse = response.response {
+					//Parse Auth Headers
 					self.parseAuthenticationHeaders(httpResponse)
 				}
 				do {
-					let result: T = try self.parse(resultValue, code)
+					let result: T = try self.parse(json, code)
 					completionHandler(result, nil)
 				} catch let apiError as APIError {
 					completionHandler(nil, apiError)
@@ -144,64 +152,37 @@ extension APIClient {
 				}
 			}
 
+			let code = response.response?.statusCode ?? DefaultStatusCode
+			var json = JSON.null
 			if let data = response.data {
-				do {
-					let jsonObject = try JSONSerialization.jsonObject(with: data, options: [.allowFragments])
-					if let code = response.response?.statusCode {
-						if code >= 200 && code <= 299 {
-							handleResult(resultValue: jsonObject, code: code)
-						} else {
-							completionHandler(nil, self.parseError(jsonObject, code))
-						}
-					} else {
-						handleResult(resultValue: jsonObject, code: 0)
-					}
-				} catch {
-					handleResult(resultValue: nil, code: 0)
-				}
-			} else {
-				handleResult(resultValue: nil, code: 0)
+				json = JSON(data: data)
 			}
-		}
-		
-//		request.responseJSON { [unowned self] response in
-//			if self.enableLogs {
-//				print("response is \(response)")
-//			}
-//			switch response.result {
-//			case .success(let resultValue):
-//				//Parse Auth Headers
-//				func handleResult(resultValue: Any, code: Int) {
-//					if let httpResponse = response.response {
-//						self.parseAuthenticationHeaders(httpResponse)
-//					}
-//					do {
-//						let result: T = try self.parse(resultValue, code)
-//						completionHandler(result, nil)
-//					} catch let apiError as APIError {
-//						completionHandler(nil, apiError)
-//					} catch {
-//						completionHandler(nil, (error as NSError).apiError)
-//					}
-//				}
+			if 200...299 ~= code {
+				handleJson(json, code: code)
+			} else {
+				completionHandler(nil, self.parseError(json, code))
+			}
+
+//			if let data = response.data {
+//				let json = JSON(data: data)
 //				if let code = response.response?.statusCode {
-//					if code >= 200 && code <= 299 {
-//						handleResult(resultValue: resultValue, code: code)
+//					if 200...299 ~= code {
+//						handleJson(json, code: code)
 //					} else {
-//						completionHandler(nil, self.parseError(resultValue, code))
+//						completionHandler(nil, self.parseError(json, code))
 //					}
 //				} else {
-//					handleResult(resultValue: resultValue, code: 0)
+//					handleJson(json, code: DefaultStatusCode)
 //				}
-//			case .failure(let error):
-//				completionHandler(nil, self.parseError(error as NSError?))
+//			} else {
+//				handleJson(JSON.null, code: DefaultStatusCode)
 //			}
-//		}
+		}
+		
 		return request
 	}
 
-	fileprivate func parse<T: JSONParsing> (_ object: Any?, _ statusCode: Int) throws -> T {
-		let json = JSON(object as AnyObject?)
+	fileprivate func parse<T: JSONParsing> (_ json: JSON, _ statusCode: Int) throws -> T {
 		do {
 			//try parsing error response
 			if let errorResponse = try? V.parse(json, code: statusCode) {
@@ -222,8 +203,7 @@ extension APIClient {
 	}
 	
 	
-	fileprivate func parseError(_ object: Any?, _ statusCode: Int) -> APIError {
-		let json = JSON(object as AnyObject?)
+	fileprivate func parseError(_ json: JSON, _ statusCode: Int) -> APIError {
 		if statusCode == 403 {
 			return APIErrorType.unauthorized.error
 		} else if statusCode == 503 {
@@ -263,6 +243,7 @@ extension Request {
 	}
 	
 }
+
 
 extension DefaultDataResponse {
 
