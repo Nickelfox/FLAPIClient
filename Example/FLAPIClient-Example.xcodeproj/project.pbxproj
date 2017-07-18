@@ -52,6 +52,7 @@
 		87B7CE4B9D483FAD4A8A201B /* Pods_FLAPIClient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FLAPIClient_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1212570D6F4B3C9B7379E29 /* Pods-FLAPIClient-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLAPIClient-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FLAPIClient-Example/Pods-FLAPIClient-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D04BD1B5D2392CB683F8C7B3 /* Pods-FLAPIClient-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLAPIClient-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-FLAPIClient-Example/Pods-FLAPIClient-Example.release.xcconfig"; sourceTree = "<group>"; };
+		E34426FF1F1E43B500B226A4 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +122,7 @@
 				6D96D5941E1FC9FA000B1595 /* Assets.xcassets */,
 				6D96D5961E1FC9FA000B1595 /* LaunchScreen.storyboard */,
 				6D96D5991E1FC9FA000B1595 /* Info.plist */,
+				E34426FF1F1E43B500B226A4 /* MyPlayground.playground */,
 			);
 			path = "FLAPIClient-Example";
 			sourceTree = "<group>";

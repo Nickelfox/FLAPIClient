@@ -169,10 +169,7 @@ extension APIClient {
 				throw errorResponse.error
 			}
 			return try T.parse(json)
-		} catch ParseError.noValue(let json) {
-			let desc = "JSON value not found at key path \(json)"
-			throw APIErrorType.mapping(message: desc).error
-		} catch ParseError.typeMismatch(let json) {
+		} catch ParseError.typeMismatch(let json, _) {
 			let desc = "JSON value type mismatch at key path \(json)"
 			throw APIErrorType.mapping(message: desc).error
 		} catch let apiError as APIError {
