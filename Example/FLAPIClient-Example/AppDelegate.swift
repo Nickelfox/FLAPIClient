@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			if let object = object {
 				print("success: \(object.message)")
 			} else {
-				print("error: \(error?.message)")
+				print("error: \(String(describing: error?.message))")
 			}
 		}
 		

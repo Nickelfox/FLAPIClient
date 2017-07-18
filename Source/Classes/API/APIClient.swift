@@ -62,11 +62,6 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 
 	}
 
-	//Override this method in the subclass to mutate response.
-	open func mutateResponse (_ response: HTTPURLResponse) -> HTTPURLResponse {
-		return response
-	}
-
 	fileprivate var isNetworkReachable: Bool {
 		guard let networkManager = self.networkManager  else {
 			return false
@@ -162,21 +157,6 @@ extension APIClient {
 			} else {
 				completionHandler(nil, self.parseError(json, code))
 			}
-
-//			if let data = response.data {
-//				let json = JSON(data: data)
-//				if let code = response.response?.statusCode {
-//					if 200...299 ~= code {
-//						handleJson(json, code: code)
-//					} else {
-//						completionHandler(nil, self.parseError(json, code))
-//					}
-//				} else {
-//					handleJson(json, code: DefaultStatusCode)
-//				}
-//			} else {
-//				handleJson(JSON.null, code: DefaultStatusCode)
-//			}
 		}
 		
 		return request
@@ -202,18 +182,12 @@ extension APIClient {
 		}
 	}
 	
-	
-	fileprivate func parseError(_ json: JSON, _ statusCode: Int) -> APIError {
-		if statusCode == 403 {
-			return APIErrorType.unauthorized.error
-		} else if statusCode == 503 {
-			return APIErrorType.serverDown.error
+	//Override this function to provide custom implementation of error parsing.
+	open func parseError(_ json: JSON, _ statusCode: Int) -> APIError {
+		if let errorResponse = try? V.parse(json, code: statusCode) {
+			return errorResponse.error
 		} else {
-			if let errorResponse = try? V.parse(json, code: statusCode) {
-				return errorResponse.error
-			} else {
-				return APIErrorType.unknown.error
-			}
+			return APIErrorType.unknown.error
 		}
 	}
 	
