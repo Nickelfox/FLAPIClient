@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		DataModel.demo { (object, error) in
 			if let object = object {
-				print("success: \(object.message)")
+				print("success: \(object.description)")
 			} else {
 				print("error: \(String(describing: error?.message))")
 			}

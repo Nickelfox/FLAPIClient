@@ -169,11 +169,13 @@ extension APIClient {
 				throw errorResponse.error
 			}
 			return try T.parse(json)
-		} catch ParseError.typeMismatch(let json, _) {
-			let desc = "JSON value type mismatch at key path \(json)"
+		} catch ParseError.typeMismatch(let json, let expected) {
+			let desc = "JSON value type mismatch at key path \(json), expected: \(expected)"
 			throw APIErrorType.mapping(message: desc).error
 		} catch let apiError as APIError {
 			throw apiError
+		} catch let error as NSError {
+			throw error.apiError
 		} catch {
 			throw APIErrorType.unknown.error
 		}
