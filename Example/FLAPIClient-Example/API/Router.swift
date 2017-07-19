@@ -10,7 +10,18 @@ import Foundation
 import FLAPIClient
 
 enum Router: APIRouter {
+	
 	case demo
+
+	var timeoutInterval: TimeInterval? {
+		return nil
+	}
+	
+	var encoding: URLEncoding? {
+	
+		return nil
+	
+	}
 	
 	public var method: HTTPMethod {
 		switch self {
