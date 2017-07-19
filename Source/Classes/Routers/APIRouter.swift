@@ -15,6 +15,10 @@ public typealias URLEncoding = Alamofire.URLEncoding
 
 public let DefaultTimeoutInterval: TimeInterval = 200
 
+public protocol APIParams {
+	var json: [String: Any] { get }
+}
+
 public protocol APIRouter: URLRequestConvertible {
 	var method: HTTPMethod { get }
 	var path: String { get }
@@ -35,7 +39,7 @@ extension APIRouter {
 			request.setValue(value, forHTTPHeaderField: key)
 		}
 		
-		var parameters: [String: AnyObject]?
+		var parameters: [String: Any]?
 		if self.method == .post || self.method == .patch || self.method == .put {
 			do {
 				request.httpBody = try JSONSerialization.data(withJSONObject: self.params, options: JSONSerialization.WritingOptions())
@@ -43,7 +47,7 @@ extension APIRouter {
 				// No-op
 			}
 		} else {
-			parameters = params as [String : AnyObject]?
+			parameters = params
 		}
 		let encoding: URLEncoding = self.encoding ?? URLEncoding.default
 		return try encoding.encode(request, with: parameters)
