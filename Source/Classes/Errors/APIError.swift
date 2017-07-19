@@ -12,24 +12,21 @@ public protocol APIErrorProtocol {
 	var error: APIError { get }
 }
 
-public class APIError: DisplayableError {
+public class APIError {
 	static let errorDomain = "com.api.error"
 	
 	public var code: APIErrorCode
 	public var title: String
 	public var message: String
-	public var actionTitle: String
 
 	public init(
 		code: APIErrorCode = APIErrorDefaults.code,
 		title: String = APIErrorDefaults.title,
-		message: String = APIErrorDefaults.message,
-		actionTitle: String = APIErrorDefaults.actionTitle
+		message: String = APIErrorDefaults.message
 		) {
 		self.code = code
 		self.title = title
 		self.message = message
-		self.actionTitle = actionTitle
 	}
 	
 }
@@ -40,8 +37,7 @@ public extension NSError {
 		return APIError(
 			code: .other(code: self.code),
 			title: self.domain,
-			message: (self.userInfo[NSLocalizedDescriptionKey] as? String) ?? APIErrorDefaults.message,
-			actionTitle: APIErrorDefaults.actionTitle
+			message: (self.userInfo[NSLocalizedDescriptionKey] as? String) ?? APIErrorDefaults.message
 		)
 	}
 	

@@ -27,13 +27,11 @@ public enum APIErrorType: APIErrorProtocol {
 	public var error: APIError {
 		var title = APIErrorDefaults.title
 		var message = APIErrorDefaults.message
-		var actionTitle = APIErrorDefaults.actionTitle
 		var code = APIErrorDefaults.code
 		switch self {
 		case .mapping (let msg):
 			title = APIErrorDefaults.mappingErrorTitle
 			message = msg ?? APIErrorDefaults.mappingErrorMessage
-			actionTitle = APIErrorDefaults.actionTitle
 			code = .mapping
 		case .noInternet:
 			message = "No Internet Connection! Check your internet connection."
@@ -47,7 +45,7 @@ public enum APIErrorType: APIErrorProtocol {
 			message = "Sorry! Our servers are under maintenance right now. Please try again later."
 			code = .serverDown
 		}
-		return APIError(code: code, title: title, message: message, actionTitle: actionTitle)
+		return APIError(code: code, title: title, message: message)
 	}
 
 }
