@@ -8,6 +8,6 @@
 
 import SwiftyJSON
 
-public protocol ErrorResponseProtocol: APIErrorProtocol {
+public protocol ErrorResponseProtocol: APIError {
 	static func parse(_ json: JSON, code: Int) throws -> Self
 }

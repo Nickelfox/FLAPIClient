@@ -118,7 +118,7 @@ extension APIClient {
 		
 		//Reachability Check
 		if !self.isNetworkReachable {
-			completionHandler(nil, APIErrorType.noInternet.error)
+			completionHandler(nil, APIErrorType.noInternet)
 		}
 		
 		//Make request
@@ -143,7 +143,7 @@ extension APIClient {
 				} catch let apiError as APIError {
 					completionHandler(nil, apiError)
 				} catch {
-					completionHandler(nil, (error as NSError).apiError)
+					completionHandler(nil, (error as! APIError))
 				}
 			}
 
@@ -166,35 +166,34 @@ extension APIClient {
 		do {
 			//try parsing error response
 			if let errorResponse = try? V.parse(json, code: statusCode) {
-				throw errorResponse.error
+				throw errorResponse
 			}
 			return try T.parse(json)
-		} catch ParseError.typeMismatch(let json, let expected) {
-			let desc = "JSON value type mismatch at key path \(json), expected: \(expected)"
-			throw APIErrorType.mapping(message: desc).error
+		} catch ParseError.typeMismatch(let json, let expectedType) {
+			throw APIErrorType.mapping(json: json, expectedType: expectedType)
 		} catch let apiError as APIError {
 			throw apiError
 		} catch let error as NSError {
-			throw error.apiError
+			throw error
 		} catch {
-			throw APIErrorType.unknown.error
+			throw APIErrorType.unknown
 		}
 	}
 	
 	//Override this function to provide custom implementation of error parsing.
 	open func parseError(_ json: JSON, _ statusCode: Int) -> APIError {
 		if let errorResponse = try? V.parse(json, code: statusCode) {
-			return errorResponse.error
+			return errorResponse
 		} else {
-			return APIErrorType.unknown.error
+			return APIErrorType.unknown
 		}
 	}
 	
 	fileprivate func parseError(_ error: NSError?) -> APIError {
 		if let error = error {
-			return error.apiError
+			return error as! APIError
 		} else {
-			return APIErrorType.unknown.error
+			return APIErrorType.unknown
 		}
 	}
 

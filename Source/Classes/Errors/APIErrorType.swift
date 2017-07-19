@@ -7,45 +7,46 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-public enum APIErrorCode {
-	case other(code: Int)
-	case noInternet
-	case mapping
-	case unauthorized
-	case serverDown
-	case unknown
+public enum APIErrorCode: Int {
+	case noInternet = 5555
+	case mapping = 5556
+	case unknown = 5557
+	
+	var code: Int {
+		return self.rawValue
+	}
 }
 
-public enum APIErrorType: APIErrorProtocol {
+public enum APIErrorType: APIError {
+	
 	case unknown
 	case noInternet
-	case unauthorized
-	case mapping(message: String?)
-	case serverDown
+	case mapping(json: JSON, expectedType: String)
 	
-	public var error: APIError {
-		var title = APIErrorDefaults.title
-		var message = APIErrorDefaults.message
-		var code = APIErrorDefaults.code
+	public var code: Int {
 		switch self {
-		case .mapping (let msg):
-			title = APIErrorDefaults.mappingErrorTitle
-			message = msg ?? APIErrorDefaults.mappingErrorMessage
-			code = .mapping
+		case .mapping: return APIErrorCode.mapping.code
+		case .noInternet: return APIErrorCode.noInternet.code
+		case .unknown: return APIErrorCode.unknown.code
+		}
+	}
+
+	public var title: String {
+		return APIErrorDefaults.title
+	}
+	
+	public var message: String {
+		var message = APIErrorDefaults.message
+		switch self {
+		case .mapping (let json, let expectedType):
+			message = "JSON value type mismatch for value \(json), expected type: \(expectedType)"
 		case .noInternet:
 			message = "No Internet Connection! Check your internet connection."
-			code = .noInternet
-		case .unauthorized:
-			message = "Sorry! Your session has expired. Please login and try again."
-			code = .unauthorized
-		case .unknown:
-			code = .unknown
-		case .serverDown:
-			message = "Sorry! Our servers are under maintenance right now. Please try again later."
-			code = .serverDown
+		case .unknown: break
 		}
-		return APIError(code: code, title: title, message: message)
+		return message
 	}
 
 }

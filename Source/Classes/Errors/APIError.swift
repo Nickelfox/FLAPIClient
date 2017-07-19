@@ -8,37 +8,30 @@
 
 import Foundation
 
-public protocol APIErrorProtocol {
-	var error: APIError { get }
+public struct APIErrorDefaults {
+	public static let code = APIErrorCode.unknown
+	public static let title = "Error"
+	public static let message = "An unknown error has occured."
+	
+	public static let mappingErrorTitle = "Mapping Error"
+	public static let mappingErrorMessage = "An unknown error occured while mapping response"
 }
 
-public class APIError {
-	static let errorDomain = "com.api.error"
-	
-	public var code: APIErrorCode
-	public var title: String
-	public var message: String
-
-	public init(
-		code: APIErrorCode = APIErrorDefaults.code,
-		title: String = APIErrorDefaults.title,
-		message: String = APIErrorDefaults.message
-		) {
-		self.code = code
-		self.title = title
-		self.message = message
-	}
-	
+public protocol APIError: Error {
+	var code: Int { get }
+	var title: String { get }
+	var message: String { get }
 }
+
 
 public extension NSError {
-	
-	var apiError: APIError {
-		return APIError(
-			code: .other(code: self.code),
-			title: self.domain,
-			message: (self.userInfo[NSLocalizedDescriptionKey] as? String) ?? APIErrorDefaults.message
-		)
+
+	public var title: String {
+		return self.domain
 	}
-	
+
+	public var message: String {
+		return (self.userInfo[NSLocalizedDescriptionKey] as? String) ?? APIErrorDefaults.message
+	}
+
 }
