@@ -17,7 +17,6 @@
 		2E2F4D043022770068190395B235C617 /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C7C311169F3CAF970644274FB0787A /* SwiftyJSON-dummy.m */; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F0620667B1D1CE3A63A07911DA946 /* TaskDelegate.swift */; };
 		38EF1AB7D9CFAED89C40189F5188B6AD /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F1732C12DA6F14BDEE17B28072818F /* APIError.swift */; };
-		3AB2853AE3957D64ED003429F8320309 /* UIAlertController+DisplayableErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583AF1E8C27D7EF24C0566208D135B10 /* UIAlertController+DisplayableErrors.swift */; };
 		41942C4C5BBF780823BAB04C8801D9F9 /* Pods-FLAPIClient-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EB1368750CA84D761FA17B2ECC39901D /* Pods-FLAPIClient-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4606FFA61EC1F9F5005EA977 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9247CAD73AC8F4F0545F70E6E55FA162 /* SwiftyJSON.framework */; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEB670658597FB7864005ED913ECB6 /* Request.swift */; };
@@ -43,7 +42,6 @@
 		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F382C5721F36A8CF08DA36032E8FF2C1 /* Validation.swift */; };
 		BDF639ABA18CF2E0072212C5288C0D95 /* APIErrorDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2989F2951C4BD2E2EA0328C776DD0A73 /* APIErrorDefaults.swift */; };
 		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03809326666A0674F21BBADB1BB09D /* ParameterEncoding.swift */; };
-		CA2EB603AC38A3B2833610C36736534C /* UIViewController+DisplayableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D95E0C05B8443991A61206BF2967E1 /* UIViewController+DisplayableError.swift */; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6E04C2B770D33E90A7E43AD9A6DDF5 /* Response.swift */; };
 		D645DEF5EEA42C1716F76E4A8333BE37 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5B8F6AE942BA3D7E8C0B8732349B67 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF60B5EB834D7EC754D0D27422F6F918 /* AuthHeadersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB85F9CF44EF188A203F365B9BA9A69 /* AuthHeadersProtocol.swift */; };
@@ -116,7 +114,6 @@
 		44B3328342653A59244A0C7037725A64 /* ListResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
 		4F34AF4675DCCA110E3AB25D1BE527A6 /* JSONParsingRx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSONParsingRx.swift; sourceTree = "<group>"; };
 		561A18F0D10BE6724E23253BCD3ACC42 /* DisplayableError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DisplayableError.swift; sourceTree = "<group>"; };
-		583AF1E8C27D7EF24C0566208D135B10 /* UIAlertController+DisplayableErrors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIAlertController+DisplayableErrors.swift"; sourceTree = "<group>"; };
 		5933A0580629CB79BDBD1D33483297F5 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		706C7AFFE37BA158C3553250F4B5FAED /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77F1732C12DA6F14BDEE17B28072818F /* APIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -151,7 +148,6 @@
 		DAA5CA9C1A1A8A10FA0F34E068E281AB /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		DE99AF16AC7077B672DAE5DAD765B367 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		E13C1458BF1521E81796EA40346B71F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2D95E0C05B8443991A61206BF2967E1 /* UIViewController+DisplayableError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+DisplayableError.swift"; sourceTree = "<group>"; };
 		E42F49FBA20BC96954B56110A1FB0535 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		E8202EA65D7F9777D78833FBE8F42BF1 /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		EB1368750CA84D761FA17B2ECC39901D /* Pods-FLAPIClient-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FLAPIClient-Example-umbrella.h"; sourceTree = "<group>"; };
@@ -223,15 +219,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		19369ED2CB4EAA412F50B8794A9E5732 /* UIExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				583AF1E8C27D7EF24C0566208D135B10 /* UIAlertController+DisplayableErrors.swift */,
-				E2D95E0C05B8443991A61206BF2967E1 /* UIViewController+DisplayableError.swift */,
-			);
-			path = UIExtensions;
-			sourceTree = "<group>";
-		};
 		3799BE688EE4D31C7B3BCE7339DB7CC1 /* Response */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,7 +237,6 @@
 				AF24DF1EDD226A438AD4C930D91051A5 /* JSON */,
 				3799BE688EE4D31C7B3BCE7339DB7CC1 /* Response */,
 				A1031C3FDB0B9DD7AC8DAF21A298FD01 /* Routers */,
-				19369ED2CB4EAA412F50B8794A9E5732 /* UIExtensions */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -639,8 +625,6 @@
 				2AE82CB50DC186602ABC468A55DE5E65 /* JSONParsingRx.swift in Sources */,
 				EBDA076EC2C2F40BCC6A1727B009058A /* ListResponse.swift in Sources */,
 				86A9B25ABF97CDEB7C912D717534B38F /* NoResponse.swift in Sources */,
-				3AB2853AE3957D64ED003429F8320309 /* UIAlertController+DisplayableErrors.swift in Sources */,
-				CA2EB603AC38A3B2833610C36736534C /* UIViewController+DisplayableError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
