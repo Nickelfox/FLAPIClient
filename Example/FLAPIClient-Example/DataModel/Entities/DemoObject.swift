@@ -10,20 +10,6 @@ import Foundation
 import FLAPIClient
 import SwiftyJSON
 
-//Data: {
-//	"args": {},
-//	"headers": {
-//		"Accept": "*/*",
-//		"Accept-Encoding": "gzip, deflate",
-//		"Accept-Language": "en-us",
-//		"Connection": "close",
-//		"Content-Type": "application/json",
-//		"Host": "httpbin.org",
-//		"User-Agent": "FLAPIClient-Example/1 CFNetwork/811.4.18 Darwin/16.6.0"
-//	},
-//	"origin": "49.36.1.237",
-//	"url": "https://httpbin.org/get"
-//}
 public struct DemoObject: CustomStringConvertible {
 	let origin: String
 	let url: Int
