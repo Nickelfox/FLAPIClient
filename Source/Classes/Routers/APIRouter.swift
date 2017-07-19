@@ -44,7 +44,7 @@ extension APIRouter {
 			do {
 				request.httpBody = try JSONSerialization.data(withJSONObject: self.params, options: JSONSerialization.WritingOptions())
 			} catch {
-				// No-op
+				throw error
 			}
 		} else {
 			parameters = params
