@@ -104,11 +104,11 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 //MARK: Non-Reactive
 extension APIClient {
 
-	public func request<T: JSONParsing> (route: APIRouter, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) {
-		let _ = self.requestInternal(route: route, completion: completion)
+	public func request<T: JSONParsing> (router: APIRouter, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) {
+		let _ = self.requestInternal(router: router, completion: completion)
 	}
 
-	fileprivate func requestInternal<T: JSONParsing> (route: APIRouter, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) -> Request {
+	fileprivate func requestInternal<T: JSONParsing> (router: APIRouter, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) -> Request {
 		
 		let completionHandler: (_ result: T?, _ error: APIError?) -> Void = { result, error in
 			DispatchQueue.main.async {
@@ -122,7 +122,7 @@ extension APIClient {
 		}
 		
 		//Make request
-		let request = self.sessionManager.request(route)
+		let request = self.sessionManager.request(router)
 		if self.enableLogs {
 			request.log()
 		}
@@ -138,12 +138,12 @@ extension APIClient {
 					self.parseAuthenticationHeaders(httpResponse)
 				}
 				do {
-					let result: T = try self.parse(json, code)
+					let result: T = try self.parse(json, router: router, code)
 					completionHandler(result, nil)
 				} catch let apiError as APIError {
 					completionHandler(nil, apiError)
 				} catch {
-					completionHandler(nil, (error as! APIError))
+					completionHandler(nil, error as NSError)
 				}
 			}
 
@@ -162,13 +162,18 @@ extension APIClient {
 		return request
 	}
 
-	fileprivate func parse<T: JSONParsing> (_ json: JSON, _ statusCode: Int) throws -> T {
+	fileprivate func parse<T: JSONParsing> (_ json: JSON, router: APIRouter, _ statusCode: Int) throws -> T {
 		do {
 			//try parsing error response
 			if let errorResponse = try? V.parse(json, code: statusCode) {
 				throw errorResponse
 			}
-			return try T.parse(json)
+			var jsonToParse = json
+			//if map keypath is provided then try to map data at that keypath
+			if let keypathToMap = router.keypathToMap {
+				jsonToParse = json[keypathToMap]
+			}
+			return try T.parse(jsonToParse)
 		} catch ParseError.typeMismatch(let json, let expectedType) {
 			throw APIErrorType.mapping(json: json, expectedType: expectedType)
 		} catch let apiError as APIError {
@@ -191,7 +196,7 @@ extension APIClient {
 	
 	fileprivate func parseError(_ error: NSError?) -> APIError {
 		if let error = error {
-			return error as! APIError
+			return error
 		} else {
 			return APIErrorType.unknown
 		}

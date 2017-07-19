@@ -13,6 +13,10 @@ enum Router: APIRouter {
 	
 	case demo
 
+	var keypathToMap: String? {
+		return nil
+	}
+	
 	var timeoutInterval: TimeInterval? {
 		return nil
 	}

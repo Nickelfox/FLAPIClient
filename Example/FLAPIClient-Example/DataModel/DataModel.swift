@@ -15,7 +15,7 @@ class DataModel {
 
 	static func demo(completion: @escaping APICompletion<DemoObject>) {
 		FoxAPIClient.shared.request(
-			route: Router.demo,
+			router: Router.demo,
 			completion: completion
 		)
 	}

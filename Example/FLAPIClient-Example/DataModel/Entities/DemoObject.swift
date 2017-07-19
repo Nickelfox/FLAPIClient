@@ -12,7 +12,7 @@ import SwiftyJSON
 
 public struct DemoObject: CustomStringConvertible {
 	let origin: String
-	let url: Int
+	let url: String
 	
 	public var description: String {
 		return "origin: \(self.origin), url: \(self.url)"
@@ -22,8 +22,8 @@ public struct DemoObject: CustomStringConvertible {
 extension DemoObject: JSONParsing {
 	public static func parse(_ json: JSON) throws -> DemoObject {
 		return try DemoObject(
-			origin: json["origin"]^,
-			url: json["url"]^
+			origin: json["Connection"]^,
+			url: json["Host"]^
 		)
 	}
 }

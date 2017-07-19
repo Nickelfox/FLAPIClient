@@ -27,6 +27,7 @@ public protocol APIRouter: URLRequestConvertible {
 	var headers: [String: String] { get }
 	var encoding: URLEncoding? { get }
 	var timeoutInterval: TimeInterval? { get }
+	var keypathToMap: String? { get }
 }
 
 extension APIRouter {

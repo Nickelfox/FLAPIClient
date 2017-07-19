@@ -24,7 +24,7 @@ public protocol APIError: Error {
 }
 
 
-public extension NSError {
+extension NSError: APIError {
 
 	public var title: String {
 		return self.domain
