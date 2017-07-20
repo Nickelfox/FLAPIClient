@@ -38,7 +38,7 @@ public struct ErrorResponse: ErrorResponseProtocol {
 	public let messages: [String]
 
 	public var title: String {
-		return APIErrorDefaults.title
+		return "Error"
 	}
 	
 	public var message: String {

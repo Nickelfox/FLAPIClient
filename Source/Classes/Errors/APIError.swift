@@ -8,9 +8,9 @@
 
 import Foundation
 
-public struct APIErrorDefaults {
-	public static let title = "Error"
-	public static let message = "An unknown error has occured."
+struct APIErrorDefaults {
+	static let title = "Error"
+	static let message = "An unknown error has occured."
 }
 
 public protocol APIError: Error {

@@ -1,5 +1,5 @@
 //
-//  APIRouter.swift
+//  Router.swift
 //  Network
 //
 //  Created by Ravindra Soni on 16/12/16.
@@ -19,7 +19,7 @@ public protocol APIParams {
 	var json: [String: Any] { get }
 }
 
-public protocol APIRouter: URLRequestConvertible {
+public protocol Router: URLRequestConvertible {
 	var method: HTTPMethod { get }
 	var path: String { get }
 	var params: [String: Any] { get }
@@ -30,7 +30,7 @@ public protocol APIRouter: URLRequestConvertible {
 	var keypathToMap: String? { get }
 }
 
-extension APIRouter {
+extension Router {
 	public func asURLRequest() throws -> URLRequest {
 		var request = URLRequest(url: self.baseUrl.appendingPathComponent(self.path))
 		request.httpMethod = self.method.rawValue

@@ -78,7 +78,7 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 ////MARK: Reactive
 //extension APIClient {
 //
-//	public func request<T: JSONParsing> (route: APIRouter) -> SignalProducer<T, APIError> {
+//	public func request<T: JSONParsing> (route: Router) -> SignalProducer<T, APIError> {
 //		
 //		return SignalProducer { sink, disposable in
 //			
@@ -104,11 +104,11 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 //MARK: Non-Reactive
 extension APIClient {
 
-	public func request<T: JSONParsing> (router: APIRouter, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) {
+	public func request<T: JSONParsing> (router: Router, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) {
 		let _ = self.requestInternal(router: router, completion: completion)
 	}
 
-	fileprivate func requestInternal<T: JSONParsing> (router: APIRouter, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) -> Request {
+	fileprivate func requestInternal<T: JSONParsing> (router: Router, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) -> Request {
 		
 		let completionHandler: (_ result: T?, _ error: APIError?) -> Void = { result, error in
 			DispatchQueue.main.async {
@@ -166,7 +166,7 @@ extension APIClient {
 		return request
 	}
 
-	fileprivate func parse<T: JSONParsing> (_ json: JSON, router: APIRouter, _ statusCode: Int) throws -> T {
+	fileprivate func parse<T: JSONParsing> (_ json: JSON, router: Router, _ statusCode: Int) throws -> T {
 		do {
 			//try parsing error response
 			if let errorResponse = try? V.parse(json, code: statusCode) {

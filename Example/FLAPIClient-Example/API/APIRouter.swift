@@ -1,5 +1,5 @@
 //
-//  Router.swift
+//  APIRouter.swift
 //  Inito
 //
 //  Created by Ravindra Soni on 24/10/16.
@@ -9,7 +9,7 @@
 import Foundation
 import FLAPIClient
 
-enum Router: APIRouter {
+enum APIRouter: Router {
 	
 	case demo
 

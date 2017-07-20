@@ -19,7 +19,7 @@
 		6D96D5B71E1FCB4E000B1595 /* AuthHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96D5B21E1FCB4E000B1595 /* AuthHeaders.swift */; };
 		6D96D5B91E1FCB4E000B1595 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96D5B41E1FCB4E000B1595 /* ErrorResponse.swift */; };
 		6D96D5BB1E1FCC45000B1595 /* FoxAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96D5BA1E1FCC45000B1595 /* FoxAPIClient.swift */; };
-		6D96D5BD1E1FD305000B1595 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96D5BC1E1FD305000B1595 /* Router.swift */; };
+		6D96D5BD1E1FD305000B1595 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D96D5BC1E1FD305000B1595 /* APIRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,7 @@
 		6D96D5B21E1FCB4E000B1595 /* AuthHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthHeaders.swift; sourceTree = "<group>"; };
 		6D96D5B41E1FCB4E000B1595 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		6D96D5BA1E1FCC45000B1595 /* FoxAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoxAPIClient.swift; sourceTree = "<group>"; };
-		6D96D5BC1E1FD305000B1595 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		6D96D5BC1E1FD305000B1595 /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		87B7CE4B9D483FAD4A8A201B /* Pods_FLAPIClient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FLAPIClient_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1212570D6F4B3C9B7379E29 /* Pods-FLAPIClient-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLAPIClient-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FLAPIClient-Example/Pods-FLAPIClient-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D04BD1B5D2392CB683F8C7B3 /* Pods-FLAPIClient-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLAPIClient-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-FLAPIClient-Example/Pods-FLAPIClient-Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 			children = (
 				6D96D5B21E1FCB4E000B1595 /* AuthHeaders.swift */,
 				6D96D5B41E1FCB4E000B1595 /* ErrorResponse.swift */,
-				6D96D5BC1E1FD305000B1595 /* Router.swift */,
+				6D96D5BC1E1FD305000B1595 /* APIRouter.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -323,7 +323,7 @@
 				6D96D5B71E1FCB4E000B1595 /* AuthHeaders.swift in Sources */,
 				6D96D5901E1FC9FA000B1595 /* ViewController.swift in Sources */,
 				6D96D5BB1E1FCC45000B1595 /* FoxAPIClient.swift in Sources */,
-				6D96D5BD1E1FD305000B1595 /* Router.swift in Sources */,
+				6D96D5BD1E1FD305000B1595 /* APIRouter.swift in Sources */,
 				6D96D58E1E1FC9FA000B1595 /* AppDelegate.swift in Sources */,
 				6D96D5B51E1FCB4E000B1595 /* DataModel.swift in Sources */,
 				6D96D5B61E1FCB4E000B1595 /* DemoObject.swift in Sources */,

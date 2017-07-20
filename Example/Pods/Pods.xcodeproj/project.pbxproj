@@ -10,7 +10,7 @@
 		026E43ECDF8130558CE0560CC0575F0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0533E4EC2277AAAC8888328EC5A64B /* Foundation.framework */; };
 		0B220C18903AA1E94A8DD5BF83292526 /* APIErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C213FAC9DB737326A345E9EC46095D /* APIErrorType.swift */; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D182500FF4918391F97385DAE996449 /* Timeline.swift */; };
-		19F6C5204AF5972348F354FA6E586D02 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27452231E37D102CDC743A3A93BFA71 /* APIRouter.swift */; };
+		19F6C5204AF5972348F354FA6E586D02 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27452231E37D102CDC743A3A93BFA71 /* Router.swift */; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 94276CF887593FC21A638F4E2F1F4A42 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1EFCFB87259C740E08EAB3F2ABF0EF54 /* ErrorResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5463CE15ED8ED771A35B93934CAD95E /* ErrorResponseProtocol.swift */; };
 		2AE82CB50DC186602ABC468A55DE5E65 /* JSONParsingRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F34AF4675DCCA110E3AB25D1BE527A6 /* JSONParsingRx.swift */; };
@@ -43,7 +43,7 @@
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6E04C2B770D33E90A7E43AD9A6DDF5 /* Response.swift */; };
 		D645DEF5EEA42C1716F76E4A8333BE37 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5B8F6AE942BA3D7E8C0B8732349B67 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF60B5EB834D7EC754D0D27422F6F918 /* AuthHeadersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB85F9CF44EF188A203F365B9BA9A69 /* AuthHeadersProtocol.swift */; };
-		E353A34C1F1F93720057D614 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353A34A1F1F934B0057D614 /* APIRequestManager.swift */; };
+		E353A34C1F1F93720057D614 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353A34A1F1F934B0057D614 /* RequestManager.swift */; };
 		EBDA076EC2C2F40BCC6A1727B009058A /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3328342653A59244A0C7037725A64 /* ListResponse.swift */; };
 		EC9962EC7A48B12DFDC946227B8EAD27 /* FLAPIClient-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 174CF37DAE8069B1B522D2F8B59CA36F /* FLAPIClient-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09922B86810418CDE6DD69710D5A9C17 /* Notifications.swift */; };
@@ -135,7 +135,7 @@
 		B31F4FD2D0BD23FB81029ED2C114A4AE /* APIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		B5463CE15ED8ED771A35B93934CAD95E /* ErrorResponseProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorResponseProtocol.swift; sourceTree = "<group>"; };
 		BA5B8F6AE942BA3D7E8C0B8732349B67 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		C27452231E37D102CDC743A3A93BFA71 /* APIRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		C27452231E37D102CDC743A3A93BFA71 /* Router.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C6CB40686D73F8788BB8D55B88C6453F /* FLAPIClient-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLAPIClient-prefix.pch"; sourceTree = "<group>"; };
 		CF6FA20699EAC0AB72A507BB66B191F8 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		CFBFF681209D4E5030FF4116EFD41362 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		DAA5CA9C1A1A8A10FA0F34E068E281AB /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		DE99AF16AC7077B672DAE5DAD765B367 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		E13C1458BF1521E81796EA40346B71F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E353A34A1F1F934B0057D614 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		E353A34A1F1F934B0057D614 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		E42F49FBA20BC96954B56110A1FB0535 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		E8202EA65D7F9777D78833FBE8F42BF1 /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		EB1368750CA84D761FA17B2ECC39901D /* Pods-FLAPIClient-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FLAPIClient-Example-umbrella.h"; sourceTree = "<group>"; };
@@ -323,8 +323,8 @@
 		A1031C3FDB0B9DD7AC8DAF21A298FD01 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				C27452231E37D102CDC743A3A93BFA71 /* APIRouter.swift */,
-				E353A34A1F1F934B0057D614 /* APIRequestManager.swift */,
+				C27452231E37D102CDC743A3A93BFA71 /* Router.swift */,
+				E353A34A1F1F934B0057D614 /* RequestManager.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -612,9 +612,9 @@
 				A2FFC16E2ED82AEF802C5F93196783B8 /* APIClient.swift in Sources */,
 				38EF1AB7D9CFAED89C40189F5188B6AD /* APIError.swift in Sources */,
 				0B220C18903AA1E94A8DD5BF83292526 /* APIErrorType.swift in Sources */,
-				19F6C5204AF5972348F354FA6E586D02 /* APIRouter.swift in Sources */,
+				19F6C5204AF5972348F354FA6E586D02 /* Router.swift in Sources */,
 				DF60B5EB834D7EC754D0D27422F6F918 /* AuthHeadersProtocol.swift in Sources */,
-				E353A34C1F1F93720057D614 /* APIRequestManager.swift in Sources */,
+				E353A34C1F1F93720057D614 /* RequestManager.swift in Sources */,
 				1EFCFB87259C740E08EAB3F2ABF0EF54 /* ErrorResponseProtocol.swift in Sources */,
 				825B7958AD615EA41B50345E0AABA03A /* FLAPIClient-dummy.m in Sources */,
 				98280235E76563BEE66360DE36EC0E88 /* JSONParsing.swift in Sources */,

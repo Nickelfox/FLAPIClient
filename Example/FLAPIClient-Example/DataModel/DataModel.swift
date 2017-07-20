@@ -15,7 +15,7 @@ class DataModel {
 
 	static func demo(completion: @escaping APICompletion<DemoObject>) {
 		
-		let requestManager = APIRequestManager(baseUrl: URL.init(string: "https://httpbin.org")!)
+		let requestManager = RequestManager(baseUrl: URL.init(string: "https://httpbin.org")!)
 		requestManager.headers = ["Content-Type": "application/json"]
 		
 		let request = requestManager.get(

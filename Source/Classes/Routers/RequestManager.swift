@@ -1,5 +1,5 @@
 //
-//  APIRequestManager.swift
+//  RequestManager.swift
 //  Pods
 //
 //  Created by Ravindra Soni on 19/07/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class APIRequestManager {
+open class RequestManager {
 
 	private static let defaultParams: [String: Any] = [:]
 	private static let defaultHeaders: [String: String] = [:]
@@ -16,9 +16,9 @@ open class APIRequestManager {
 	private static let defaultTimeout: TimeInterval = DefaultTimeoutInterval
 	
 	public let baseUrl: URL
-	public var headers: [String: String] = APIRequestManager.defaultHeaders
-	public var encoding: URLEncoding = APIRequestManager.defaultEncoding
-	public var timeoutInterval: TimeInterval = APIRequestManager.defaultTimeout
+	public var headers: [String: String] = RequestManager.defaultHeaders
+	public var encoding: URLEncoding = RequestManager.defaultEncoding
+	public var timeoutInterval: TimeInterval = RequestManager.defaultTimeout
 	public var keypathToMap: String? = nil
 
 	public init(baseUrl: URL) {
@@ -27,11 +27,11 @@ open class APIRequestManager {
 
 	public func get(
 		path: String,
-		params: [String: Any] = APIRequestManager.defaultParams,
+		params: [String: Any] = RequestManager.defaultParams,
 		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
 		encoding: URLEncoding? = nil,
-		timeoutInterval: TimeInterval? = nil) -> APIRouter {
+		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .get,
 			path: path,
@@ -45,11 +45,11 @@ open class APIRequestManager {
 
 	public func post(
 		path: String,
-		params: [String: Any] = APIRequestManager.defaultParams,
+		params: [String: Any] = RequestManager.defaultParams,
 		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
 		encoding: URLEncoding? = nil,
-		timeoutInterval: TimeInterval? = nil) -> APIRouter {
+		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .post,
 			path: path,
@@ -63,11 +63,11 @@ open class APIRequestManager {
 
 	public func put(
 		path: String,
-		params: [String: Any] = APIRequestManager.defaultParams,
+		params: [String: Any] = RequestManager.defaultParams,
 		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
 		encoding: URLEncoding? = nil,
-		timeoutInterval: TimeInterval? = nil) -> APIRouter {
+		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .put,
 			path: path,
@@ -81,11 +81,11 @@ open class APIRequestManager {
 
 	public func patch(
 		path: String,
-		params: [String: Any] = APIRequestManager.defaultParams,
+		params: [String: Any] = RequestManager.defaultParams,
 		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
 		encoding: URLEncoding? = nil,
-		timeoutInterval: TimeInterval? = nil) -> APIRouter {
+		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .patch,
 			path: path,
@@ -99,11 +99,11 @@ open class APIRequestManager {
 
 	public func delete(
 		path: String,
-		params: [String: Any] = APIRequestManager.defaultParams,
+		params: [String: Any] = RequestManager.defaultParams,
 		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
 		encoding: URLEncoding? = nil,
-		timeoutInterval: TimeInterval? = nil) -> APIRouter {
+		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .delete,
 			path: path,
@@ -118,11 +118,11 @@ open class APIRequestManager {
 	public func request(
 		method: HTTPMethod, 
 		path: String,
-		params: [String: Any] = APIRequestManager.defaultParams,
+		params: [String: Any] = RequestManager.defaultParams,
 		headers: [String: String]? = nil,
 		keypathToMap: String? = nil, 
 		encoding: URLEncoding? = nil,
-		timeoutInterval: TimeInterval? = nil) -> APIRouter {
+		timeoutInterval: TimeInterval? = nil) -> Router {
 		return APIRequest(
 			baseUrl: self.baseUrl,
 			method: method,
@@ -137,7 +137,7 @@ open class APIRequestManager {
 	
 }
 
-public struct APIRequest: APIRouter {
+public struct APIRequest: Router {
 
 	public let baseUrl: URL
 	public let method: HTTPMethod
