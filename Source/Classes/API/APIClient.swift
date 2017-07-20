@@ -101,7 +101,7 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 //
 //}
 
-//MARK: Non-Reactive
+//MARK: Non-Reactive JSON Request
 extension APIClient {
 
 	public func request<T: JSONParsing> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) {
@@ -109,6 +109,14 @@ extension APIClient {
 	}
 
 	fileprivate func requestInternal<T: JSONParsing> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) -> Request {
+		
+		//Make request
+		let request = self.sessionManager.request(router)
+		self.makeRequest(request: request, router: router, completion: completion)
+		return request
+	}
+	
+	fileprivate func makeRequest<T: JSONParsing> (request: DataRequest, router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) {
 		
 		let completionHandler: (_ result: APIResult<T>) -> Void = { result in
 			DispatchQueue.main.async {
@@ -120,13 +128,7 @@ extension APIClient {
 		if !self.isNetworkReachable {
 			completionHandler(.failure(APIErrorType.noInternet))
 		}
-		
-		//Make request
-		let request = self.sessionManager.request(router)
-		if self.enableLogs {
-			request.log()
-		}
-		
+
 		request.response { [weak self] response in
 			guard let this = self else {
 				completionHandler(.failure(APIErrorType.unknown))
@@ -135,7 +137,7 @@ extension APIClient {
 			if this.enableLogs {
 				response.log()
 			}
-
+			
 			func handleJson(_ json: JSON, code: Int) {
 				if let httpResponse = response.response {
 					//Parse Auth Headers
@@ -162,10 +164,53 @@ extension APIClient {
 				completionHandler(.failure(this.parseError(json, code)))
 			}
 		}
-		
-		return request
 	}
 
+
+}
+
+//MARK: Non-Reactive Multipart Request
+extension APIClient {
+	
+	func multipartRequest<T: JSONParsing> (
+		router: Router,
+		multipartFormData: @escaping (MultipartFormData) -> Void,
+		completion: @escaping (_ result: APIResult<T>) -> Void) {
+		
+		self.multipartRequestInternal(
+			router: router,
+			multipartFormData: multipartFormData,
+			completion: completion
+		)
+	}
+	
+	fileprivate func multipartRequestInternal<T: JSONParsing> (router: Router, multipartFormData: @escaping (MultipartFormData) -> Void, completion: @escaping (_ result: APIResult<T>) -> Void) {
+		let completionHandler: (_ result: APIResult<T>) -> Void = { result in
+			DispatchQueue.main.async {
+				completion(result)
+			}
+		}
+		
+		//Make request
+		self.sessionManager.upload(
+		multipartFormData: multipartFormData, with: router) { [weak self] encodingResult in
+			guard let this = self else {
+				completionHandler(.failure(APIErrorType.unknown))
+				return
+			}
+			switch encodingResult {
+			case .success(let upload, _, _):
+				this.makeRequest(request: upload, router: router, completion: completion)
+			case .failure(let encodingError):
+				completionHandler(.failure(this.parseError(encodingError as NSError?)))
+			}
+		}
+	}
+
+
+}
+
+extension APIClient {
 	fileprivate func parse<T: JSONParsing> (_ json: JSON, router: Router, _ statusCode: Int) throws -> T {
 		do {
 			//try parsing error response
