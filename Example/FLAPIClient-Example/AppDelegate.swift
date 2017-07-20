@@ -18,15 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
-		DataModel.demo { result in
+//		DataModel.demo { result in
+//			switch result {
+//			case .success(let demoObject):
+//				print("success: \(demoObject.description)")
+//			case .failure(let error):
+//				print("error: \(String(describing: error.message))")
+//			}
+//		}
+
+		DataModel.demo1 { result in
 			switch result {
-			case .success(let demoObject):
-				print("success: \(demoObject.description)")
+			case .success(let origin):
+				print("success: \(origin)")
 			case .failure(let error):
 				print("error: \(String(describing: error.message))")
 			}
 		}
-		
+
 		return true
 	}
 

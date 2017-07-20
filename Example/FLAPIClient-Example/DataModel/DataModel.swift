@@ -16,16 +16,20 @@ typealias APICompletion1<T> = (APIResult<T>) -> Void
 class DataModel {
 
 	static func demo(completion: @escaping APICompletion1<DemoObject>) {
-		
-		let requestManager = RequestManager(baseUrl: URL.init(string: "https://httpbin.org")!)
-		requestManager.headers = ["Content-Type": "application/json"]
-		
-		let request = requestManager.get(
+		let request = APIRequestManager.shared.get(
 			path: "/get", timeoutInterval: nil
 		)
 		
 		FoxAPIClient.shared.request(router: request, completion: completion)
 		
+	}
+
+	static func demo1(completion: @escaping APICompletion1<String>) {
+		let request = APIRequestManager.shared.get(
+			path: "/get",
+			keypathToMap: "origin"
+		)
+		FoxAPIClient.shared.request(router: request, completion: completion)
 	}
 
 }
