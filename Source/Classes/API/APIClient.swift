@@ -127,18 +127,22 @@ extension APIClient {
 			request.log()
 		}
 		
-		request.response { [unowned self] response in
-			if self.enableLogs {
+		request.response { [weak self] response in
+			guard let this = self else {
+				completion(nil, APIErrorType.unknown)
+				return
+			}
+			if this.enableLogs {
 				response.log()
 			}
 			
 			func handleJson(_ json: JSON, code: Int) {
 				if let httpResponse = response.response {
 					//Parse Auth Headers
-					self.parseAuthenticationHeaders(httpResponse)
+					this.parseAuthenticationHeaders(httpResponse)
 				}
 				do {
-					let result: T = try self.parse(json, router: router, code)
+					let result: T = try this.parse(json, router: router, code)
 					completionHandler(result, nil)
 				} catch let apiError as APIError {
 					completionHandler(nil, apiError)
@@ -155,7 +159,7 @@ extension APIClient {
 			if 200...299 ~= code {
 				handleJson(json, code: code)
 			} else {
-				completionHandler(nil, self.parseError(json, code))
+				completionHandler(nil, this.parseError(json, code))
 			}
 		}
 		
