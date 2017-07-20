@@ -128,8 +128,8 @@ open class RequestManager {
 			method: method,
 			path: path,
 			params: params,
-			headers: headers ?? self.headers,
 			keypathToMap: keypathToMap,
+			headers: headers ?? self.headers,
 			encoding: encoding ?? self.encoding,
 			timeoutInterval: timeoutInterval ?? self.timeoutInterval
 		)

@@ -223,7 +223,7 @@ extension APIClient {
 			var jsonToParse = json
 			//if map keypath is provided then try to map data at that keypath
 			if let keypathToMap = router.keypathToMap {
-				jsonToParse = json[keypathToMap]
+				jsonToParse = json.jsonAtKeyPath(keypath: keypathToMap)
 			}
 			return try T.parse(jsonToParse)
 		} catch ParseError.typeMismatch(let json, let expectedType) {

@@ -27,7 +27,7 @@ class DataModel {
 	static func demo1(completion: @escaping APICompletion1<String>) {
 		let request = APIRequestManager.shared.get(
 			path: "/get",
-			keypathToMap: "origin"
+			keypathToMap: "headers.Host"
 		)
 		FoxAPIClient.shared.request(router: request, completion: completion)
 	}

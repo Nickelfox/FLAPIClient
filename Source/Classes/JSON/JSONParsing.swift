@@ -149,6 +149,21 @@ public extension JSON {
 			return self
 		}
 	}
+
+	public func jsonAtKeyPath(keypath: String) -> JSON {
+		return self.jsonAtKeyPaths(keypaths: keypath.components(separatedBy: "."))
+	}
+
+	public func jsonAtKeyPaths(keypaths: [String]) -> JSON {
+		if keypaths.isEmpty {
+			return self
+		}
+		var remainingKeypaths: [String] = []
+		if keypaths.count > 1 {
+			remainingKeypaths = Array(keypaths[1...keypaths.count-1])
+		}
+		return self[keypaths.first!].jsonAtKeyPaths(keypaths: remainingKeypaths)
+	}
 	
 }
 
