@@ -104,21 +104,21 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 //MARK: Non-Reactive
 extension APIClient {
 
-	public func request<T: JSONParsing> (router: Router, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) {
+	public func request<T: JSONParsing> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) {
 		let _ = self.requestInternal(router: router, completion: completion)
 	}
 
-	fileprivate func requestInternal<T: JSONParsing> (router: Router, completion: @escaping (_ result: T?, _ error: APIError?) -> Void) -> Request {
+	fileprivate func requestInternal<T: JSONParsing> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) -> Request {
 		
-		let completionHandler: (_ result: T?, _ error: APIError?) -> Void = { result, error in
+		let completionHandler: (_ result: APIResult<T>) -> Void = { result in
 			DispatchQueue.main.async {
-				completion(result, error)
+				completion(result)
 			}
 		}
 		
 		//Reachability Check
 		if !self.isNetworkReachable {
-			completionHandler(nil, APIErrorType.noInternet)
+			completionHandler(.failure(error: APIErrorType.noInternet))
 		}
 		
 		//Make request
@@ -129,13 +129,13 @@ extension APIClient {
 		
 		request.response { [weak self] response in
 			guard let this = self else {
-				completion(nil, APIErrorType.unknown)
+				completionHandler(.failure(error: APIErrorType.unknown))
 				return
 			}
 			if this.enableLogs {
 				response.log()
 			}
-			
+
 			func handleJson(_ json: JSON, code: Int) {
 				if let httpResponse = response.response {
 					//Parse Auth Headers
@@ -143,14 +143,14 @@ extension APIClient {
 				}
 				do {
 					let result: T = try this.parse(json, router: router, code)
-					completionHandler(result, nil)
+					completionHandler(.success(value: result))
 				} catch let apiError as APIError {
-					completionHandler(nil, apiError)
+					completionHandler(.failure(error: apiError))
 				} catch {
-					completionHandler(nil, error as NSError)
+					completionHandler(.failure(error: error as NSError))
 				}
 			}
-
+			
 			let code = response.response?.statusCode ?? DefaultStatusCode
 			var json = JSON.null
 			if let data = response.data {
@@ -159,7 +159,7 @@ extension APIClient {
 			if 200...299 ~= code {
 				handleJson(json, code: code)
 			} else {
-				completionHandler(nil, this.parseError(json, code))
+				completionHandler(.failure(error: this.parseError(json, code)))
 			}
 		}
 		

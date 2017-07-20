@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum APIResult<T: JSONParsing> {
+public enum APIResult<T> {
 	case success(value: T)
 	case failure(error: APIError)
 }
