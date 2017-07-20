@@ -22,9 +22,13 @@ public struct DemoObject: CustomStringConvertible {
 extension DemoObject: JSONParsing {
 	public static func parse(_ json: JSON) throws -> DemoObject {
 		return try DemoObject(
-			origin: json["Connection"]^,
-			url: json["Host"]^
+			origin: json["origin"]^,
+			url: json["url"]^
 		)
+	}
+	
+	func test() {
+
 	}
 }
 

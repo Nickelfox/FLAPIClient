@@ -50,7 +50,7 @@ enum Router: APIRouter {
 	
 	public var baseUrl: URL {
 		let baseURL = URL(string: "https://httpbin.org")!
-		return baseURL.appendingPathComponent(self.path)
+		return baseURL
 	}
 	
 	public var headers: [String: String] {

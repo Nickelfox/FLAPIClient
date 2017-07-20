@@ -32,7 +32,7 @@ public protocol APIRouter: URLRequestConvertible {
 
 extension APIRouter {
 	public func asURLRequest() throws -> URLRequest {
-		var request = URLRequest(url: self.baseUrl)
+		var request = URLRequest(url: self.baseUrl.appendingPathComponent(self.path))
 		request.httpMethod = self.method.rawValue
 		request.timeoutInterval = self.timeoutInterval ?? DefaultTimeoutInterval
 		
