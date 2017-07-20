@@ -9,13 +9,11 @@
 import Foundation
 import FLAPIClient
 
-typealias APICompletion<T> = (T?, APIError?) -> Void
-
-typealias APICompletion1<T> = (APIResult<T>) -> Void
+typealias APICompletion<T> = (APIResult<T>) -> Void
 
 class DataModel {
 
-	static func demo(completion: @escaping APICompletion1<DemoObject>) {
+	static func demo(completion: @escaping APICompletion<DemoObject>) {
 		let request = APIRequestManager.shared.get(
 			path: "/get", timeoutInterval: nil
 		)
@@ -24,7 +22,7 @@ class DataModel {
 		
 	}
 
-	static func demo1(completion: @escaping APICompletion1<String>) {
+	static func demo1(completion: @escaping APICompletion<String>) {
 		let request = APIRequestManager.shared.get(
 			path: "/get",
 			keypathToMap: "headers.Host"
