@@ -28,16 +28,16 @@ open class RequestManager {
 	public func get(
 		path: String,
 		params: [String: Any] = RequestManager.defaultParams,
-		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
+		headers: [String: String]? = nil,
 		encoding: URLEncoding? = nil,
 		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .get,
 			path: path,
 			params: params,
-			headers: headers,
 			keypathToMap: keypathToMap,
+			headers: headers,
 			encoding: encoding,
 			timeoutInterval: timeoutInterval
 		)
@@ -46,16 +46,16 @@ open class RequestManager {
 	public func post(
 		path: String,
 		params: [String: Any] = RequestManager.defaultParams,
-		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
+		headers: [String: String]? = nil,
 		encoding: URLEncoding? = nil,
 		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .post,
 			path: path,
 			params: params,
-			headers: headers,
 			keypathToMap: keypathToMap,
+			headers: headers,
 			encoding: encoding,
 			timeoutInterval: timeoutInterval
 		)
@@ -64,16 +64,16 @@ open class RequestManager {
 	public func put(
 		path: String,
 		params: [String: Any] = RequestManager.defaultParams,
-		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
+		headers: [String: String]? = nil,
 		encoding: URLEncoding? = nil,
 		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .put,
 			path: path,
 			params: params,
-			headers: headers,
 			keypathToMap: keypathToMap,
+			headers: headers,
 			encoding: encoding,
 			timeoutInterval: timeoutInterval
 		)
@@ -82,16 +82,16 @@ open class RequestManager {
 	public func patch(
 		path: String,
 		params: [String: Any] = RequestManager.defaultParams,
-		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
+		headers: [String: String]? = nil,
 		encoding: URLEncoding? = nil,
 		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .patch,
 			path: path,
 			params: params,
-			headers: headers,
 			keypathToMap: keypathToMap,
+			headers: headers,
 			encoding: encoding,
 			timeoutInterval: timeoutInterval
 		)
@@ -100,16 +100,16 @@ open class RequestManager {
 	public func delete(
 		path: String,
 		params: [String: Any] = RequestManager.defaultParams,
-		headers: [String: String]? = nil,
 		keypathToMap: String? = nil,
+		headers: [String: String]? = nil,
 		encoding: URLEncoding? = nil,
 		timeoutInterval: TimeInterval? = nil) -> Router {
 		return self.request(
 			method: .delete,
 			path: path,
 			params: params,
-			headers: headers,
 			keypathToMap: keypathToMap,
+			headers: headers,
 			encoding: encoding,
 			timeoutInterval: timeoutInterval
 		)
@@ -119,8 +119,8 @@ open class RequestManager {
 		method: HTTPMethod, 
 		path: String,
 		params: [String: Any] = RequestManager.defaultParams,
+		keypathToMap: String? = nil,
 		headers: [String: String]? = nil,
-		keypathToMap: String? = nil, 
 		encoding: URLEncoding? = nil,
 		timeoutInterval: TimeInterval? = nil) -> Router {
 		return APIRequest(

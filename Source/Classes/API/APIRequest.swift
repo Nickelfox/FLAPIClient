@@ -19,7 +19,7 @@ public struct APIRequest: Router {
 	public let timeoutInterval: TimeInterval?
 	public let keypathToMap: String?
 	
-	public init(baseUrl: URL, method: HTTPMethod, path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval? = nil) {
+	public init(baseUrl: URL, method: HTTPMethod, path: String, params: [String: Any] = [:], keypathToMap: String? = nil, headers: [String: String] = [:], encoding: URLEncoding? = nil, timeoutInterval: TimeInterval? = nil) {
 		self.baseUrl = baseUrl
 		self.method = method
 		self.path = path
