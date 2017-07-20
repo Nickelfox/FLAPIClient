@@ -8,19 +8,30 @@
 
 import Foundation
 
-public class APIRequestManager {
+open class APIRequestManager {
 
+	private static let defaultParams: [String: Any] = [:]
+	private static let defaultHeaders: [String: String] = [:]
+	private static let defaultEncoding: URLEncoding = URLEncoding.default
+	private static let defaultTimeout: TimeInterval = DefaultTimeoutInterval
+	
 	public let baseUrl: URL
-	public var headers: [String: String] = [:]
-	public var encoding: URLEncoding = URLEncoding.default
-	public var timeoutInterval: TimeInterval = DefaultTimeoutInterval
+	public var headers: [String: String] = APIRequestManager.defaultHeaders
+	public var encoding: URLEncoding = APIRequestManager.defaultEncoding
+	public var timeoutInterval: TimeInterval = APIRequestManager.defaultTimeout
 	public var keypathToMap: String? = nil
 
 	public init(baseUrl: URL) {
 		self.baseUrl = baseUrl
 	}
 
-	public func get(path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval?) -> APIRouter {
+	public func get(
+		path: String,
+		params: [String: Any] = APIRequestManager.defaultParams,
+		headers: [String: String]? = nil,
+		keypathToMap: String? = nil,
+		encoding: URLEncoding? = nil,
+		timeoutInterval: TimeInterval? = nil) -> APIRouter {
 		return self.request(
 			method: .get,
 			path: path,
@@ -32,7 +43,13 @@ public class APIRequestManager {
 		)
 	}
 
-	public func post(path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval?) -> APIRouter {
+	public func post(
+		path: String,
+		params: [String: Any] = APIRequestManager.defaultParams,
+		headers: [String: String]? = nil,
+		keypathToMap: String? = nil,
+		encoding: URLEncoding? = nil,
+		timeoutInterval: TimeInterval? = nil) -> APIRouter {
 		return self.request(
 			method: .post,
 			path: path,
@@ -44,7 +61,13 @@ public class APIRequestManager {
 		)
 	}
 
-	public func put(method: HTTPMethod, path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval?) -> APIRouter {
+	public func put(
+		path: String,
+		params: [String: Any] = APIRequestManager.defaultParams,
+		headers: [String: String]? = nil,
+		keypathToMap: String? = nil,
+		encoding: URLEncoding? = nil,
+		timeoutInterval: TimeInterval? = nil) -> APIRouter {
 		return self.request(
 			method: .put,
 			path: path,
@@ -56,7 +79,13 @@ public class APIRequestManager {
 		)
 	}
 
-	public func patch(method: HTTPMethod, path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval?) -> APIRouter {
+	public func patch(
+		path: String,
+		params: [String: Any] = APIRequestManager.defaultParams,
+		headers: [String: String]? = nil,
+		keypathToMap: String? = nil,
+		encoding: URLEncoding? = nil,
+		timeoutInterval: TimeInterval? = nil) -> APIRouter {
 		return self.request(
 			method: .patch,
 			path: path,
@@ -68,7 +97,13 @@ public class APIRequestManager {
 		)
 	}
 
-	public func delete(method: HTTPMethod, path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval?) -> APIRouter {
+	public func delete(
+		path: String,
+		params: [String: Any] = APIRequestManager.defaultParams,
+		headers: [String: String]? = nil,
+		keypathToMap: String? = nil,
+		encoding: URLEncoding? = nil,
+		timeoutInterval: TimeInterval? = nil) -> APIRouter {
 		return self.request(
 			method: .delete,
 			path: path,
@@ -80,13 +115,20 @@ public class APIRequestManager {
 		)
 	}
 
-	public func request(method: HTTPMethod, path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval?) -> APIRouter {
+	public func request(
+		method: HTTPMethod, 
+		path: String,
+		params: [String: Any] = APIRequestManager.defaultParams,
+		headers: [String: String]? = nil,
+		keypathToMap: String? = nil, 
+		encoding: URLEncoding? = nil,
+		timeoutInterval: TimeInterval? = nil) -> APIRouter {
 		return APIRequest(
 			baseUrl: self.baseUrl,
 			method: method,
 			path: path,
 			params: params,
-			headers: headers,
+			headers: headers ?? self.headers,
 			keypathToMap: keypathToMap,
 			encoding: encoding ?? self.encoding,
 			timeoutInterval: timeoutInterval ?? self.timeoutInterval
@@ -106,7 +148,7 @@ public struct APIRequest: APIRouter {
 	public let timeoutInterval: TimeInterval?
 	public let keypathToMap: String?
 	
-	public init(baseUrl: URL, method: HTTPMethod, path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval?) {
+	public init(baseUrl: URL, method: HTTPMethod, path: String, params: [String: Any] = [:], headers: [String: String] = [:], keypathToMap: String? = nil, encoding: URLEncoding? = nil, timeoutInterval: TimeInterval? = nil) {
 		self.baseUrl = baseUrl
 		self.method = method
 		self.path = path

@@ -14,10 +14,6 @@ typealias APICompletion<T> = (T?, APIError?) -> Void
 class DataModel {
 
 	static func demo(completion: @escaping APICompletion<DemoObject>) {
-//		FoxAPIClient.shared.request(
-//			router: Router.demo,
-//			completion: completion
-//		)
 		
 		let requestManager = APIRequestManager(baseUrl: URL.init(string: "https://httpbin.org")!)
 		requestManager.headers = ["Content-Type": "application/json"]
