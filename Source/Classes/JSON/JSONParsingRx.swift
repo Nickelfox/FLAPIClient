@@ -1,9 +1,9 @@
 //
 //  JSONParsingRx.swift
-//  Inito
+//  APIClient
 //
 //  Created by Ravindra Soni on 15/10/16.
-//  Copyright © 2016 NF. All rights reserved.
+//  Copyright © 2016 Nickelfox. All rights reserved.
 //
 
 /*

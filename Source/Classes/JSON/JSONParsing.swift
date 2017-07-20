@@ -1,6 +1,6 @@
 //
 //  JSONParsing.swift
-//  JSONParsing
+//  APIClient
 //
 //  Created by Ravindra Soni on 16/12/16.
 //  Copyright © 2016 Nickelfox. All rights reserved.

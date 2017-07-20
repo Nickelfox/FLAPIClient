@@ -1,9 +1,9 @@
 //
 //  RequestManager.swift
-//  Pods
+//  APIClient
 //
 //  Created by Ravindra Soni on 19/07/17.
-//
+//  Copyright © 2016 Nickelfox. All rights reserved.
 //
 
 import Foundation
