@@ -118,7 +118,7 @@ extension APIClient {
 		
 		//Reachability Check
 		if !self.isNetworkReachable {
-			completionHandler(.failure(error: APIErrorType.noInternet))
+			completionHandler(.failure(APIErrorType.noInternet))
 		}
 		
 		//Make request
@@ -129,7 +129,7 @@ extension APIClient {
 		
 		request.response { [weak self] response in
 			guard let this = self else {
-				completionHandler(.failure(error: APIErrorType.unknown))
+				completionHandler(.failure(APIErrorType.unknown))
 				return
 			}
 			if this.enableLogs {
@@ -143,11 +143,11 @@ extension APIClient {
 				}
 				do {
 					let result: T = try this.parse(json, router: router, code)
-					completionHandler(.success(value: result))
+					completionHandler(.success(result))
 				} catch let apiError as APIError {
-					completionHandler(.failure(error: apiError))
+					completionHandler(.failure(apiError))
 				} catch {
-					completionHandler(.failure(error: error as NSError))
+					completionHandler(.failure(error as NSError))
 				}
 			}
 			
@@ -159,7 +159,7 @@ extension APIClient {
 			if 200...299 ~= code {
 				handleJson(json, code: code)
 			} else {
-				completionHandler(.failure(error: this.parseError(json, code)))
+				completionHandler(.failure(this.parseError(json, code)))
 			}
 		}
 		

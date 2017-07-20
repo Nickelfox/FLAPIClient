@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum APIResult<T> {
-	case success(value: T)
-	case failure(error: APIError)
+public enum APIResult<Value> {
+	case success(Value)
+	case failure(APIError)
 }
