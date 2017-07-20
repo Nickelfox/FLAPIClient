@@ -9,12 +9,8 @@
 import Foundation
 
 public struct APIErrorDefaults {
-	public static let code = APIErrorCode.unknown
 	public static let title = "Error"
 	public static let message = "An unknown error has occured."
-	
-	public static let mappingErrorTitle = "Mapping Error"
-	public static let mappingErrorMessage = "An unknown error occured while mapping response"
 }
 
 public protocol APIError: Error {
