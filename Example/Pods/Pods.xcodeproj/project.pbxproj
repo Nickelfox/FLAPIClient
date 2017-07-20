@@ -44,6 +44,7 @@
 		D645DEF5EEA42C1716F76E4A8333BE37 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA5B8F6AE942BA3D7E8C0B8732349B67 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF60B5EB834D7EC754D0D27422F6F918 /* AuthHeadersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB85F9CF44EF188A203F365B9BA9A69 /* AuthHeadersProtocol.swift */; };
 		E353A34C1F1F93720057D614 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E353A34A1F1F934B0057D614 /* RequestManager.swift */; };
+		E3776F6B1F20BC400004C840 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3776F691F20BC0D0004C840 /* APIResult.swift */; };
 		EBDA076EC2C2F40BCC6A1727B009058A /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3328342653A59244A0C7037725A64 /* ListResponse.swift */; };
 		EC9962EC7A48B12DFDC946227B8EAD27 /* FLAPIClient-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 174CF37DAE8069B1B522D2F8B59CA36F /* FLAPIClient-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09922B86810418CDE6DD69710D5A9C17 /* Notifications.swift */; };
@@ -146,6 +147,7 @@
 		DE99AF16AC7077B672DAE5DAD765B367 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
 		E13C1458BF1521E81796EA40346B71F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E353A34A1F1F934B0057D614 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		E3776F691F20BC0D0004C840 /* APIResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		E42F49FBA20BC96954B56110A1FB0535 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		E8202EA65D7F9777D78833FBE8F42BF1 /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		EB1368750CA84D761FA17B2ECC39901D /* Pods-FLAPIClient-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FLAPIClient-Example-umbrella.h"; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			children = (
 				B31F4FD2D0BD23FB81029ED2C114A4AE /* APIClient.swift */,
 				2EB85F9CF44EF188A203F365B9BA9A69 /* AuthHeadersProtocol.swift */,
+				E3776F691F20BC0D0004C840 /* APIResult.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				A2FFC16E2ED82AEF802C5F93196783B8 /* APIClient.swift in Sources */,
 				38EF1AB7D9CFAED89C40189F5188B6AD /* APIError.swift in Sources */,
 				0B220C18903AA1E94A8DD5BF83292526 /* APIErrorType.swift in Sources */,
+				E3776F6B1F20BC400004C840 /* APIResult.swift in Sources */,
 				19F6C5204AF5972348F354FA6E586D02 /* Router.swift in Sources */,
 				DF60B5EB834D7EC754D0D27422F6F918 /* AuthHeadersProtocol.swift in Sources */,
 				E353A34C1F1F93720057D614 /* RequestManager.swift in Sources */,
