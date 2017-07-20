@@ -129,6 +129,9 @@ extension APIClient {
 			completionHandler(.failure(APIErrorType.noInternet))
 		}
 
+		if self.enableLogs {
+			request.log()
+		}
 		request.response { [weak self] response in
 			guard let this = self else {
 				completionHandler(.failure(APIErrorType.unknown))
