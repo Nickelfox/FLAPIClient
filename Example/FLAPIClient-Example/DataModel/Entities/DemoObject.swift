@@ -11,19 +11,17 @@ import FLAPIClient
 import SwiftyJSON
 
 public struct DemoObject: CustomStringConvertible {
-	let origin: String
-	let url: String
+	let status: Bool
 	
 	public var description: String {
-		return "origin: \(self.origin), url: \(self.url)"
+		return "status: \(self.status ? "true" : "false")"
 	}
 }
 
 extension DemoObject: JSONParsing {
 	public static func parse(_ json: JSON) throws -> DemoObject {
 		return try DemoObject(
-			origin: json["origin"]^,
-			url: json["url"]^
+			status: json["args"]["status"]^
 		)
 	}
 	
