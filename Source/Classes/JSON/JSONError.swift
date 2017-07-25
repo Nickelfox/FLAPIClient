@@ -9,6 +9,25 @@
 import SwiftyJSON
 
 public enum JSONError: Error {
+	
 	case typeMismatch(json: JSON, expectedType: String)
 	case invalidTransform(json: JSON, fromType: String, toType: String)
+	
+	public var code: Int {
+		return 3333
+	}
+
+	public var domain: String {
+		return "JSON Error"
+	}
+
+	public var description: String {
+		switch self {
+		case .typeMismatch(let json, let expectedType):
+			return "json error: value type mismatch for value \(json), expected type: \(expectedType)"
+		case .invalidTransform(let json, let fromType, let toType):
+			return "json error: can't transform value: \(json), from: \(fromType) to: \(toType)"
+		}
+	}
+
 }

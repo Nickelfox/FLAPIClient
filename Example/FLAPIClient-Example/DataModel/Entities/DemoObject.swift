@@ -10,11 +10,10 @@ import Foundation
 import FLAPIClient
 import SwiftyJSON
 
-enum Test: String, JSONParseRawRepresentable {
-	typealias RawValue = String
-	case one = "one"
-	case two = "two"
-	case three
+enum Test: Int, JSONParseRawRepresentable {
+	typealias RawValue = Int
+	case one = 1
+	case two = 2
 }
 
 public struct DemoObject: CustomStringConvertible {

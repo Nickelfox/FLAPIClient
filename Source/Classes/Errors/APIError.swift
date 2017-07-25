@@ -31,3 +31,15 @@ extension NSError: APIError {
 	}
 
 }
+
+extension JSONError: APIError {
+	
+	public var title: String {
+		return self.domain
+	}
+	
+	public var message: String {
+		return self.description
+	}
+	
+}

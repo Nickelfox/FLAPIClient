@@ -226,8 +226,6 @@ extension APIClient {
 				jsonToParse = json.jsonAtKeyPath(keypath: keypathToMap)
 			}
 			return try T.parse(jsonToParse)
-		} catch JSONError.typeMismatch(let json, let expectedType) {
-			throw APIErrorType.mapping(json: json, expectedType: expectedType)
 		} catch let apiError as APIError {
 			throw apiError
 		} catch let error as NSError {
