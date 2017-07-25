@@ -11,10 +11,10 @@ import FLAPIClient
 import SwiftyJSON
 
 public struct DemoObject: CustomStringConvertible {
-	let status: Bool
+	let status: Float
 	
 	public var description: String {
-		return "status: \(self.status ? "true" : "false")"
+		return "status: \(self.status)"
 	}
 }
 
