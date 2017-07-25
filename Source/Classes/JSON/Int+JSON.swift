@@ -1,9 +1,9 @@
 //
 //  Int+JSON.swift
-//  Pods
+//  APIClient
 //
 //  Created by Ravindra Soni on 25/07/17.
-//
+//  Copyright © 2016 Nickelfox. All rights reserved.
 //
 
 import SwiftyJSON

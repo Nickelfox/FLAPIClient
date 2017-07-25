@@ -2,7 +2,7 @@
 //  JSONParseable.swift
 //  APIClient
 //
-//  Created by Ravindra Soni on 16/12/16.
+//  Created by Ravindra Soni on 25/07/17.
 //  Copyright © 2016 Nickelfox. All rights reserved.
 //
 
