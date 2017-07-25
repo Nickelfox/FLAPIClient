@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-public protocol AuthHeadersProtocol: JSONParsing, RequestAdapter {
+public protocol AuthHeadersProtocol: JSONParseable, RequestAdapter {
 	
 	var isValid: Bool { get }
 	

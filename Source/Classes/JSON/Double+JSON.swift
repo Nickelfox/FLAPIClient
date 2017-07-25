@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-extension Double: JSONPrimitveTransfromable {
+extension Double: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Double? {
 		return number.doubleValue

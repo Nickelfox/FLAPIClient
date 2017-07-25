@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-extension Float: JSONPrimitveTransfromable {
+extension Float: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Float? {
 		return number.floatValue

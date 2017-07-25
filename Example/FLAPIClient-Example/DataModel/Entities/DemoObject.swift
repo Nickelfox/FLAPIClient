@@ -18,7 +18,7 @@ public struct DemoObject: CustomStringConvertible {
 	}
 }
 
-extension DemoObject: JSONParsing {
+extension DemoObject: JSONParseable {
 	public static func parse(_ json: JSON) throws -> DemoObject {
 		return try DemoObject(
 			status: json["args"]["status"]^

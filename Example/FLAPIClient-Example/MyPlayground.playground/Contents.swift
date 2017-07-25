@@ -8,7 +8,7 @@ let jsonData = "{\"activities\": {\"running\": {\"distance\": false}}}"
 
 let data = jsonData.data(using: .utf8)!
 let json = JSON(data: data)
-struct Object: JSONParsing {
+struct Object: JSONParseable {
 	
 	let status: Bool
 	
@@ -25,4 +25,3 @@ do {
 	print(object.status)
 } catch {
 	print(error)
-}

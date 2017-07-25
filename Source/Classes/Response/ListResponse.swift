@@ -8,11 +8,11 @@
 
 import SwiftyJSON
 
-public final class ListResponse<T: JSONParsing> {
+public final class ListResponse<T: JSONParseable> {
     public var list: [T] = []
 }
 
-extension ListResponse: JSONParsing {
+extension ListResponse: JSONParseable {
     
     public static func parse(_ json: JSON) throws -> ListResponse {
         let jsonList = json.arrayValue

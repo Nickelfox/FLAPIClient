@@ -1,5 +1,5 @@
 //
-//  JSONPrimitveTransfromable.swift
+//  JSONParseablePrimitive.swift
 //  Pods
 //
 //  Created by Ravindra Soni on 25/07/17.
@@ -8,15 +8,15 @@
 
 import SwiftyJSON
 
-public protocol JSONPrimitveTransfromable: JSONParsing {
+public protocol JSONParseablePrimitive: JSONParseable {
 	static func transform(_ number: NSNumber) -> Self?
 	static func transform(_ string: String) -> Self?
 	static func transform(_ json: JSON) -> Self
 }
 
-public extension JSONParsing where Self: JSONPrimitveTransfromable {
+public extension JSONParseablePrimitive {
 	
-	static func optionalValue(_ json: JSON) -> Self? {
+	private static func optionalValue(_ json: JSON) -> Self? {
 		if json.type == .number {
 			return Self.transform(json.object as! NSNumber)
 		} else if json.type == .string {
@@ -33,13 +33,20 @@ public extension JSONParsing where Self: JSONPrimitveTransfromable {
 			throw error
 		}
 		guard let value = Self.optionalValue(json) else {
-			throw ParseError.typeMismatch(json: json, expectedType: String(describing: Self.self))
+			throw JSONError.typeMismatch(json: json, expectedType: String(describing: Self.self))
 		}
 		return value
 	}
 	
-	static func forceParse(_ json: JSON) -> Self {
+	static func forceValue(_ json: JSON) -> Self {
 		return Self.transform(json)
 	}
 	
 }
+
+// Keeping this operator explicitely for Primitive Transofrmable types
+postfix operator ^!
+public postfix func ^! <T: JSONParseablePrimitive> (json: JSON) -> T! {
+	return T.forceValue(json)
+}
+

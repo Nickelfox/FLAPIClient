@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-public struct NoResponse: JSONParsing {
+public struct NoResponse: JSONParseable {
 	public static func parse(_ json: JSON) throws -> NoResponse {
 		return NoResponse()
 	}

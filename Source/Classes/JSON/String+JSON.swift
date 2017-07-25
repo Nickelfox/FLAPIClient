@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-extension String: JSONPrimitveTransfromable {
+extension String: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> String? {
 		return number.stringValue

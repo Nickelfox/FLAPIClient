@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-extension Int: JSONPrimitveTransfromable {
+extension Int: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Int? {
 		return number.intValue
@@ -24,7 +24,7 @@ extension Int: JSONPrimitveTransfromable {
 
 }
 
-extension Int8: JSONPrimitveTransfromable {
+extension Int8: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Int8? {
 		return number.int8Value
@@ -40,7 +40,7 @@ extension Int8: JSONPrimitveTransfromable {
 
 }
 
-extension Int16: JSONPrimitveTransfromable {
+extension Int16: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Int16? {
 		return number.int16Value
@@ -56,7 +56,7 @@ extension Int16: JSONPrimitveTransfromable {
 
 }
 
-extension Int32: JSONPrimitveTransfromable {
+extension Int32: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Int32? {
 		return number.int32Value
@@ -72,7 +72,7 @@ extension Int32: JSONPrimitveTransfromable {
 
 }
 
-extension Int64: JSONPrimitveTransfromable {
+extension Int64: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Int64? {
 		return number.int64Value

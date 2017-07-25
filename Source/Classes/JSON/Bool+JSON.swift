@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-extension Bool: JSONPrimitveTransfromable {
+extension Bool: JSONParseablePrimitive {
 	
 	public static func transform(_ number: NSNumber) -> Bool? {
 		return number.boolValue

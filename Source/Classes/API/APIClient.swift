@@ -78,7 +78,7 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 ////MARK: Reactive
 //extension APIClient {
 //
-//	public func request<T: JSONParsing> (route: Router) -> SignalProducer<T, APIError> {
+//	public func request<T: JSONParseable> (route: Router) -> SignalProducer<T, APIError> {
 //		
 //		return SignalProducer { sink, disposable in
 //			
@@ -104,11 +104,11 @@ open class APIClient<U: AuthHeadersProtocol, V: ErrorResponseProtocol> {
 //MARK: Non-Reactive JSON Request
 extension APIClient {
 
-	public func request<T: JSONParsing> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) {
+	public func request<T: JSONParseable> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) {
 		let _ = self.requestInternal(router: router, completion: completion)
 	}
 
-	fileprivate func requestInternal<T: JSONParsing> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) -> Request {
+	fileprivate func requestInternal<T: JSONParseable> (router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) -> Request {
 		
 		//Make request
 		let request = self.sessionManager.request(router)
@@ -116,7 +116,7 @@ extension APIClient {
 		return request
 	}
 	
-	fileprivate func makeRequest<T: JSONParsing> (request: DataRequest, router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) {
+	fileprivate func makeRequest<T: JSONParseable> (request: DataRequest, router: Router, completion: @escaping (_ result: APIResult<T>) -> Void) {
 		
 		let completionHandler: (_ result: APIResult<T>) -> Void = { result in
 			DispatchQueue.main.async {
@@ -175,7 +175,7 @@ extension APIClient {
 //MARK: Non-Reactive Multipart Request
 extension APIClient {
 	
-	func multipartRequest<T: JSONParsing> (
+	func multipartRequest<T: JSONParseable> (
 		router: Router,
 		multipartFormData: @escaping (MultipartFormData) -> Void,
 		completion: @escaping (_ result: APIResult<T>) -> Void) {
@@ -187,7 +187,7 @@ extension APIClient {
 		)
 	}
 	
-	fileprivate func multipartRequestInternal<T: JSONParsing> (router: Router, multipartFormData: @escaping (MultipartFormData) -> Void, completion: @escaping (_ result: APIResult<T>) -> Void) {
+	fileprivate func multipartRequestInternal<T: JSONParseable> (router: Router, multipartFormData: @escaping (MultipartFormData) -> Void, completion: @escaping (_ result: APIResult<T>) -> Void) {
 		let completionHandler: (_ result: APIResult<T>) -> Void = { result in
 			DispatchQueue.main.async {
 				completion(result)
@@ -214,7 +214,7 @@ extension APIClient {
 }
 
 extension APIClient {
-	fileprivate func parse<T: JSONParsing> (_ json: JSON, router: Router, _ statusCode: Int) throws -> T {
+	fileprivate func parse<T: JSONParseable> (_ json: JSON, router: Router, _ statusCode: Int) throws -> T {
 		do {
 			//try parsing error response
 			if let errorResponse = try? V.parse(json, code: statusCode) {
@@ -226,7 +226,7 @@ extension APIClient {
 				jsonToParse = json.jsonAtKeyPath(keypath: keypathToMap)
 			}
 			return try T.parse(jsonToParse)
-		} catch ParseError.typeMismatch(let json, let expectedType) {
+		} catch JSONError.typeMismatch(let json, let expectedType) {
 			throw APIErrorType.mapping(json: json, expectedType: expectedType)
 		} catch let apiError as APIError {
 			throw apiError
