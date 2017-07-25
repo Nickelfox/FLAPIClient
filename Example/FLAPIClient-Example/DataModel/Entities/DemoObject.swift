@@ -10,18 +10,25 @@ import Foundation
 import FLAPIClient
 import SwiftyJSON
 
+enum Test: String, JSONParseRawRepresentable {
+	typealias RawValue = String
+	case one = "one"
+	case two = "two"
+	case three
+}
+
 public struct DemoObject: CustomStringConvertible {
-	let url: URL
+	let values: [Test]
 	
 	public var description: String {
-		return "url: \(self.url)"
+		return "values: \(self.values)"
 	}
 }
 
 extension DemoObject: JSONParseable {
 	public static func parse(_ json: JSON) throws -> DemoObject {
 		return try DemoObject(
-			url: json["args"]["url"]^
+			values: json["args"]["values[]"]^^
 		)
 	}
 	

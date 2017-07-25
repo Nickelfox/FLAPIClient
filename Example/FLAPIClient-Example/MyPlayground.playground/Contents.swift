@@ -12,16 +12,17 @@ enum Test: String, JSONParseRawRepresentable {
 }
 //let jsonData = "{\"activities\": {\"running\": {\"distance\": false}}}"
 //let jsonData = "{\"url\": \"hello\"}"
-let jsonData = "{\"url\": null}"
-let x: URL? = URL(string: "hello")
+//let jsonData = "{\"url\": null}"
+let jsonData = "{\"data\": [\"one\",\"two\"]}"
 let data = jsonData.data(using: .utf8)!
 let json = JSON(data: data)
 struct Object: JSONParseable {
 	
-	let url: Test
+	let values: [Test]
 	
 	static func parse(_ json: JSON) throws -> Object {
-		return try Object(url: json["url"]^? ?? .three)
+//		return try Object(values: Array<Int>.parse(json["data"]))
+		return try Object(values: json["data"]^^)
 //		return try Object(status: json["activities"]["running"]["distance"]^)
 //		activities.running.distance
 	}
@@ -31,6 +32,7 @@ struct Object: JSONParseable {
 
 do {
 	let object = try Object.parse(json)
-	print(object.url)
+	print(object.values)
 } catch {
 	print(error)
+}
