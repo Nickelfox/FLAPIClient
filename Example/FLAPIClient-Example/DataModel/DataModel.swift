@@ -14,7 +14,7 @@ typealias APICompletion<T> = (APIResult<T>) -> Void
 class DataModel {
 
 	static func demo(completion: @escaping APICompletion<DemoObject>) {
-		let params = ["status": true]
+		let params = ["url": "http://google.com"]
 		let request = APIRequestManager.shared.get(
 			path: "/anything",
 			params: params,

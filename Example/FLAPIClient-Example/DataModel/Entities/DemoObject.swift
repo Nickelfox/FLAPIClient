@@ -11,17 +11,17 @@ import FLAPIClient
 import SwiftyJSON
 
 public struct DemoObject: CustomStringConvertible {
-	let status: Float
+	let url: URL
 	
 	public var description: String {
-		return "status: \(self.status)"
+		return "url: \(self.url)"
 	}
 }
 
 extension DemoObject: JSONParseable {
 	public static func parse(_ json: JSON) throws -> DemoObject {
 		return try DemoObject(
-			status: json["args"]["status"]^
+			url: json["args"]["url"]^
 		)
 	}
 	

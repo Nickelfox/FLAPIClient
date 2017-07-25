@@ -10,4 +10,5 @@ import SwiftyJSON
 
 public enum JSONError: Error {
 	case typeMismatch(json: JSON, expectedType: String)
+	case invalidTransform(json: JSON, fromType: String, toType: String)
 }

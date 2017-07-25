@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			switch result {
 			case .success(let demoObject):
 				print("success: \(demoObject.description)")
+				application.open(demoObject.url, options: [:], completionHandler: nil)
 			case .failure(let error):
 				print("error: \(String(describing: error.message))")
 			}
